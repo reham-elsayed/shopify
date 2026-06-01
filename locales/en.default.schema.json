@@ -54,6 +54,105 @@
             "label": "Card"
           },
           "label": "Style"
+        },
+        "header__layout": {
+          "content": "Layout"
+        },
+        "media_background": {
+          "label": "Image area background"
+        },
+        "content_padding": {
+          "label": "Content padding"
+        },
+        "content_gap": {
+          "label": "Content spacing"
+        },
+        "badge_offset": {
+          "label": "Badge offset from edge"
+        },
+        "title_line_clamp": {
+          "label": "Maximum title lines"
+        },
+        "media_height_ratio": {
+          "label": "Image height share"
+        },
+        "header__typography": {
+          "content": "Typography"
+        },
+        "title_font_size": {
+          "label": "Title font size"
+        },
+        "title_font_weight": {
+          "label": "Title font weight"
+        },
+        "price_font_size": {
+          "label": "Price font size"
+        },
+        "price_opacity": {
+          "label": "Price opacity"
+        },
+        "header__quick_add": {
+          "content": "Quick add button"
+        },
+        "quick_add_glass_tint": {
+          "label": "Glass tint"
+        },
+        "quick_add_text": {
+          "label": "Text and icon"
+        },
+        "quick_add_hover_glass_tint": {
+          "label": "Glass tint on hover"
+        },
+        "quick_add_glass_opacity": {
+          "label": "Glass opacity"
+        },
+        "quick_add_glass_blur": {
+          "label": "Glass blur"
+        },
+        "quick_add_glass_border_opacity": {
+          "label": "Glass border opacity"
+        },
+        "quick_add_icon_size": {
+          "label": "Cart icon size"
+        },
+        "quick_add_disabled_background": {
+          "label": "Disabled background"
+        },
+        "quick_add_padding_vertical": {
+          "label": "Vertical padding"
+        },
+        "quick_add_padding_horizontal": {
+          "label": "Horizontal padding"
+        },
+        "quick_add_letter_spacing": {
+          "label": "Letter spacing"
+        },
+        "quick_add_font_size": {
+          "label": "Font size"
+        },
+        "quick_add_transition_duration": {
+          "label": "Reveal animation duration"
+        },
+        "header__variants": {
+          "content": "Variant selector"
+        },
+        "variant_panel_max_height": {
+          "label": "Panel max height"
+        },
+        "variant_gap": {
+          "label": "Option spacing"
+        },
+        "variant_padding": {
+          "label": "Panel padding"
+        },
+        "variant_active_background": {
+          "label": "Selected option background"
+        },
+        "variant_active_text": {
+          "label": "Selected option text"
+        },
+        "variant_legend_color": {
+          "label": "Option label color"
         }
       }
     },
@@ -2275,6 +2374,10 @@
               "options__2": {
                 "label": "Vertical"
               }
+            },
+            "content": {
+              "label": "Content pairings",
+              "info": "Configure your icons, images, and text below"
             },
             "pairing_1": {
               "label": "Pairing 1",

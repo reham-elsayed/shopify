@@ -1,0 +1,130 @@
+/* motion.css - Premium Restrained Motion System */
+
+:root {
+  --motion-fast: 0.15s;
+  --motion-medium: 0.3s;
+  --motion-slow: 0.5s;
+
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-smooth: cubic-bezier(0.19, 1, 0.22, 1);
+
+  /* Subtle hover elevation */
+  --card-lift: -1px;
+}
+
+/* Image hover effects - image-first, subtle zoom */
+@supports (object-fit: cover) {
+  .product-card-wrapper .card__media img,
+  .card__media img,
+  .media img,
+  .product-card-wrapper img {
+    transition: transform var(--motion-medium) var(--ease-out-quad);
+  }
+
+  .product-card-wrapper:hover .card__media img,
+  .card-wrapper:hover .card__media img,
+  .product-card-wrapper:hover img,
+  .card:hover img {
+    transform: scale(1.02);
+  }
+}
+
+/* Button & interactive hover effects */
+button,
+.button,
+[role="button"],
+a.button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  transition: all var(--motion-fast) var(--ease-out-quad);
+}
+
+button:hover,
+.button:hover,
+[role="button"]:hover,
+a.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover {
+  transform: translateY(var(--card-lift));
+}
+
+/* Card elevation on hover - subtle */
+.product-card-wrapper,
+.card-wrapper,
+.card {
+  transition: box-shadow var(--motion-medium) var(--ease-out-quad);
+}
+
+.product-card-wrapper:hover,
+.card-wrapper:hover,
+.card:hover {
+  box-shadow: var(--shadow-medium);
+}
+
+/* Form field focus effects */
+input,
+textarea,
+select {
+  transition: border-color var(--motion-fast) var(--ease-out-quad),
+              box-shadow var(--motion-fast) var(--ease-out-quad);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: rgba(var(--color-foreground-rgb), 0.5);
+  box-shadow: 0 0 0 2px rgba(var(--color-background-rgb), 1),
+              0 0 0 4px rgba(var(--color-foreground-rgb), 0.25);
+}
+
+/* Menu and drawer transitions */
+.drawer,
+.global-settings-popup,
+[aria-hidden="true"] {
+  transition: opacity var(--motion-medium) var(--ease-out-cubic),
+              visibility var(--motion-medium) var(--ease-out-cubic),
+              transform var(--motion-medium) var(--ease-out-cubic);
+}
+
+/* Fade for content updates */
+.fade-in {
+  animation: fadeIn var(--motion-medium) var(--ease-out-cubic);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Accessibility - respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  button:hover,
+  .button:hover,
+  [role="button"]:hover,
+  a.button:hover {
+    transform: none;
+  }
+
+  .product-card-wrapper:hover .card__media img,
+  .card-wrapper:hover .card__media img,
+  .product-card-wrapper:hover img,
+  .card:hover img {
+    transform: none;
+  }
+}

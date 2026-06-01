@@ -16,11 +16,11 @@
 }
 
 .newsletter__wrapper > * + * {
-  margin-top: 2rem;
+  margin-top: var(--space-6);
 }
 
 .newsletter__wrapper > * + .newsletter-form {
-  margin-top: 3rem;
+  margin-top: var(--space-7);
 }
 
 .newsletter__subheading {
@@ -34,17 +34,17 @@
 }
 
 .newsletter-form__field-wrapper .newsletter-form__message {
-  margin-top: 1.5rem;
+  margin-top: var(--space-4);
 }
 
 .newsletter__button {
-  margin-top: 3rem;
+  margin-top: var(--space-7);
   width: fit-content;
 }
 
 @media screen and (min-width: 750px) {
   .newsletter__button {
     flex-shrink: 0;
-    margin: 0 0 0 1rem;
+    margin: 0 0 0 var(--space-3);
   }
 }

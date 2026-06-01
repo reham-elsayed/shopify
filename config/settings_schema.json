@@ -616,6 +616,298 @@
         "unit": "px",
         "label": "t:settings_schema.global.settings.blur.label",
         "default": 0
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.cards.settings.header__layout.content"
+      },
+      {
+        "type": "color",
+        "id": "card_media_background",
+        "label": "t:settings_schema.cards.settings.media_background.label",
+        "default": "#f5f5f5"
+      },
+      {
+        "type": "range",
+        "id": "card_content_padding",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.content_padding.label",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "card_content_gap",
+        "min": 0,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.content_gap.label",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "card_badge_offset",
+        "min": 0,
+        "max": 32,
+        "step": 2,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.badge_offset.label",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "card_title_line_clamp",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "label": "t:settings_schema.cards.settings.title_line_clamp.label",
+        "default": 2
+      },
+      {
+        "type": "range",
+        "id": "card_media_height_ratio",
+        "min": 70,
+        "max": 95,
+        "step": 1,
+        "unit": "%",
+        "label": "t:settings_schema.cards.settings.media_height_ratio.label",
+        "default": 90
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.cards.settings.header__typography.content"
+      },
+      {
+        "type": "range",
+        "id": "card_title_font_size",
+        "min": 10,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.title_font_size.label",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "card_title_font_weight",
+        "min": 400,
+        "max": 700,
+        "step": 100,
+        "label": "t:settings_schema.cards.settings.title_font_weight.label",
+        "default": 500
+      },
+      {
+        "type": "range",
+        "id": "card_price_font_size",
+        "min": 10,
+        "max": 18,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.price_font_size.label",
+        "default": 13
+      },
+      {
+        "type": "range",
+        "id": "card_price_opacity",
+        "min": 40,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "t:settings_schema.cards.settings.price_opacity.label",
+        "default": 70
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.cards.settings.header__quick_add.content"
+      },
+      {
+        "type": "color",
+        "id": "card_quick_add_background",
+        "label": "t:settings_schema.cards.settings.quick_add_glass_tint.label",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "card_quick_add_text",
+        "label": "t:settings_schema.cards.settings.quick_add_text.label",
+        "default": "#121212"
+      },
+      {
+        "type": "color",
+        "id": "card_quick_add_hover_background",
+        "label": "t:settings_schema.cards.settings.quick_add_hover_glass_tint.label",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "card_quick_add_disabled_background",
+        "label": "t:settings_schema.cards.settings.quick_add_disabled_background.label",
+        "default": "#999999"
+      },
+      {
+        "type": "range",
+        "id": "card_quick_add_glass_opacity",
+        "min": 0,
+        "max": 80,
+        "step": 5,
+        "unit": "%",
+        "label": "t:settings_schema.cards.settings.quick_add_glass_opacity.label",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "card_quick_add_glass_blur",
+        "min": 4,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.quick_add_glass_blur.label",
+        "default": 12
+      },
+      {
+        "type": "range",
+        "id": "card_quick_add_glass_border_opacity",
+        "min": 0,
+        "max": 50,
+        "step": 5,
+        "unit": "%",
+        "label": "t:settings_schema.cards.settings.quick_add_glass_border_opacity.label",
+        "default": 15
+      },
+      {
+        "type": "range",
+        "id": "card_quick_add_icon_size",
+        "min": 14,
+        "max": 28,
+        "step": 2,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.quick_add_icon_size.label",
+        "default": 18
+      },
+      {
+        "type": "range",
+        "id": "card_quick_add_padding_vertical",
+        "min": 4,
+        "max": 30,
+        "step": 2,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.quick_add_padding_vertical.label",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "card_quick_add_padding_horizontal",
+        "min": 4,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.quick_add_padding_horizontal.label",
+        "default": 14
+      },
+      {
+        "type": "range",
+        "id": "card_quick_add_font_size",
+        "min": 10,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.quick_add_font_size.label",
+        "default": 13
+      },
+      {
+        "type": "range",
+        "id": "card_quick_add_letter_spacing",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.quick_add_letter_spacing.label",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "card_quick_add_transition_duration",
+        "min": 100,
+        "max": 800,
+        "step": 50,
+        "unit": "ms",
+        "label": "t:settings_schema.cards.settings.quick_add_transition_duration.label",
+        "default": 350
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.cards.settings.header__variants.content"
+      },
+      {
+        "type": "range",
+        "id": "card_variant_panel_opacity",
+        "min": 70,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "t:settings_schema.global.settings.opacity.label",
+        "default": 95
+      },
+      {
+        "type": "range",
+        "id": "card_variant_panel_blur",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.global.settings.blur.label",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "card_variant_panel_max_height",
+        "min": 150,
+        "max": 400,
+        "step": 10,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.variant_panel_max_height.label",
+        "default": 300
+      },
+      {
+        "type": "range",
+        "id": "card_variant_gap",
+        "min": 4,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.variant_gap.label",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "card_variant_padding",
+        "min": 4,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "label": "t:settings_schema.cards.settings.variant_padding.label",
+        "default": 12
+      },
+      {
+        "type": "color",
+        "id": "card_variant_active_background",
+        "label": "t:settings_schema.cards.settings.variant_active_background.label",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "card_variant_active_text",
+        "label": "t:settings_schema.cards.settings.variant_active_text.label",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "card_variant_legend_color",
+        "label": "t:settings_schema.cards.settings.variant_legend_color.label",
+        "default": "#333333"
       }
     ]
   },
