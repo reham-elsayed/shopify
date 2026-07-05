@@ -25,11 +25,11 @@
         {{ section.settings.heading }}
       </h2>
     {%- endif -%}
-    <div class="collage{% if section.settings.mobile_layout == 'collage' %} collage--mobile{% endif %}">
+    <div class="collage    {% if section.settings.mobile_layout == 'collage' %} collage--mobile{% endif %}">
       {% assign skip_card_product_styles = false %}
       {%- for block in section.blocks -%}
         <div
-          class="collage__item collage__item--{{ block.type }} collage__item--{{ section.settings.desktop_layout }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          class="collage__item collage__item--{{ block.type }} collage__item--{{ section.settings.desktop_layout }}{% if forloop.first %} collage__item--desktop-large{% endif %}{% if forloop.index == 2 %} collage__item--desktop-small-1{% endif %}{% if forloop.index == 3 %} collage__item--desktop-small-2{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {{ block.shopify_attributes }}
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
@@ -411,7 +411,7 @@
       ]
     }
   ],
-  "max_blocks": 3,
+  "max_blocks": 6,
   "presets": [
     {
       "name": "t:sections.collage.presets.name",
