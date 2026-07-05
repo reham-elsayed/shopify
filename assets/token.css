@@ -1,0 +1,204 @@
+/* token.css
+   Centralized design tokens for the premium editorial storefront.
+   This file consolidates root-level token definitions from design-tokens.css,
+   typography.css, spacing.css, motion.css, and base.css.
+*/
+
+:root {
+  /* Typography */
+  --font-heading: var(--font-heading-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  --font-body: var(--font-body-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+
+  --text-hero-size: clamp(3rem, 8vw, 5.6rem);
+  --text-hero-weight: 600;
+  --text-hero-line-height: 1.1;
+  --text-hero-letter-spacing: -0.02em;
+
+  --text-heading-1-size: clamp(2rem, 5vw, 3rem);
+  --text-heading-1-weight: 600;
+  --text-heading-1-line-height: 1.15;
+
+  --text-heading-2-size: 1.75rem;
+  --text-heading-2-weight: 600;
+  --text-heading-2-line-height: 1.2;
+
+  --text-heading-3-size: 1.35rem;
+  --text-heading-3-weight: 600;
+  --text-heading-3-line-height: 1.25;
+
+  --text-label-size: 0.95rem;
+  --text-label-weight: 600;
+  --text-label-letter-spacing: 0.01em;
+
+  --text-body-size: 1rem;
+  --text-body-weight: 400;
+  --text-body-line-height: 1.6;
+
+  --text-ui-size: 0.9rem;
+  --text-ui-weight: 500;
+  --text-ui-letter-spacing: 0;
+
+  --text-meta-size: 0.8rem;
+  --text-meta-weight: 500;
+  --text-meta-line-height: 1.4;
+  --text-meta-letter-spacing: 0.02em;
+  --text-meta-color: rgba(var(--color-foreground-rgb), 0.65);
+
+  /* Spacing */
+  --space-0: 0;
+  --space-1: calc(var(--grid-mobile-horizontal-spacing) * 0.5);
+  --space-2: calc(var(--grid-mobile-horizontal-spacing) * 1);
+  --space-3: calc(var(--grid-mobile-horizontal-spacing) * 1.5);
+  --space-4: calc(var(--grid-mobile-horizontal-spacing) * 2);
+  --space-5: var(--grid-desktop-vertical-spacing);
+  --space-6: calc(var(--grid-desktop-vertical-spacing) * 1.33);
+  --space-7: calc(var(--grid-desktop-vertical-spacing) * 2);
+  --space-8: calc(var(--grid-desktop-vertical-spacing) * 2.67);
+  --space-9: calc(var(--spacing-sections-mobile) * 0.8);
+  --space-10: var(--spacing-sections-desktop);
+
+  --section-padding-y: var(--spacing-sections-desktop);
+  --section-padding-y-mobile: var(--spacing-sections-mobile);
+
+  --container-sm: 900px;
+  --container-md: var(--page-width);
+  --container-lg: 1440px;
+
+  --gutter-desktop: var(--grid-desktop-horizontal-spacing);
+  --gutter-mobile: var(--grid-mobile-horizontal-spacing);
+
+  /* Border system */
+  --radius-none: 0;
+  --radius-soft: 2px;
+  --radius-rounded: 4px;
+  --radius-full: 50%;
+
+  --border-hairline: 1px;
+  --border-thin: 2px;
+  --border-medium: 3px;
+
+  --border-opacity-subtle: 0.1;
+  --border-opacity-light: 0.15;
+  --border-opacity-medium: 0.25;
+
+  /* Shadow system */
+  --shadow-none: none;
+  --shadow-light: 0 2px 8px rgba(var(--color-shadow), 0.05);
+  --shadow-medium: 0 4px 16px rgba(var(--color-shadow), 0.08);
+  --shadow-strong: 0 12px 32px rgba(var(--color-shadow), 0.12);
+
+  /* Color system */
+  --color-foreground-rgb: var(--color-foreground, 18, 18, 18);
+  --color-background-rgb: var(--color-background, 255, 255, 255);
+  --color-shadow-rgb: var(--color-shadow, 18, 18, 18);
+
+  --text-color: rgba(var(--color-foreground-rgb), 0.9);
+  --text-color-secondary: rgba(var(--color-foreground-rgb), 0.65);
+  --text-color-tertiary: rgba(var(--color-foreground-rgb), 0.45);
+  --text-color-muted: rgba(var(--color-foreground-rgb), 0.35);
+
+  --border-color: rgba(var(--color-foreground-rgb), var(--border-opacity-light));
+  --border-color-strong: rgba(var(--color-foreground-rgb), var(--border-opacity-medium));
+
+  --bg-overlay-light: rgba(var(--color-background-rgb), 0.95);
+  --bg-overlay-strong: rgba(var(--color-background-rgb), 0.98);
+
+  /* Accessibility */
+  --focus-outline: 2px solid rgba(var(--color-foreground-rgb), 0.4);
+  --focus-outline-offset: 2px;
+
+  /* Motion */
+  --motion-fast: 0.15s;
+  --motion-medium: 0.5s;
+  --motion-slow: 0.8s;
+
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-smooth: cubic-bezier(0.19, 1, 0.22, 1);
+
+  --card-lift: -1px;
+
+  --transition-fast: 0.15s;
+  --transition-base: 0.3s;
+  --transition-slow: 0.5s;
+
+  --image-hover-scale: 1.02;
+  --image-transition-duration: 400ms;
+  --image-transition-timing: var(--ease-out-cubic);
+
+  --duration-short: 100ms;
+  --duration-default: 200ms;
+  --duration-announcement-bar: 250ms;
+  --duration-medium: 300ms;
+  --duration-long: 500ms;
+  --duration-extra-long: 600ms;
+  --duration-extra-longer: 750ms;
+  --duration-extended: 3s;
+  --ease-out-slow: cubic-bezier(0, 0, 0.3, 1);
+  --animation-slide-in: slideIn var(--duration-extra-long) var(--ease-out-slow) forwards;
+  --animation-fade-in: fadeIn var(--duration-extra-long) var(--ease-out-slow);
+
+  /* Component presets */
+  --card-border-style: var(--border-hairline) solid var(--border-color);
+  --card-shadow-style: var(--shadow-light);
+  --card-radius-style: var(--radius-soft);
+  --card-padding: var(--space-4);
+
+  --button-padding-y: var(--space-2);
+  --button-padding-x: var(--space-4);
+  --button-radius: var(--radius-soft);
+  --button-border: none;
+  --button-transition: all 200ms ease-out-quad;
+
+  --input-padding-y: var(--space-2);
+  --input-padding-x: var(--space-3);
+  --input-radius: var(--radius-soft);
+  --input-border: var(--border-hairline) solid var(--border-color);
+  --input-transition: border-color 200ms ease-out-quad, box-shadow 200ms ease-out-quad;
+
+  --alpha-button-background: 1;
+  --alpha-button-border: 1;
+  --alpha-link: 0.85;
+  --alpha-badge-border: 0.1;
+  --focused-base-outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  --focused-base-outline-offset: 0.3rem;
+  --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
+
+  --product-card-panel-background: rgb(var(--color-button));
+--product-card-panel-text: rgb(var(--color-button-text));
+--product-card-panel-border-opacity: 0.12;
+--product-card-panel-expand-duration: 450ms;
+/* Glassmorphism */
+ --glass-bg: rgba(255,255,255,0.08);
+  --glass-border: rgba(255,255,255,0.25);
+  --glass-highlight: rgba(255,255,255,0.4);
+
+  --glass-blur: 24px;
+
+  --glass-shadow:
+    0 8px 30px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+@media screen and (min-width: 750px) {
+  :root {
+    --space-1: calc(var(--grid-desktop-horizontal-spacing) * 0.25);
+    --space-2: calc(var(--grid-desktop-horizontal-spacing) * 0.5);
+    --space-3: calc(var(--grid-desktop-horizontal-spacing) * 0.75);
+    --space-4: calc(var(--grid-desktop-horizontal-spacing) * 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0s;
+    --motion-medium: 0s;
+    --motion-slow: 0s;
+    --transition-fast: 0s;
+    --transition-base: 0s;
+    --transition-slow: 0s;
+    --image-hover-scale: 1;
+    --image-transition-duration: 0ms;
+  }
+}

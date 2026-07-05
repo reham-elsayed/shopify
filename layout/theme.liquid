@@ -51,7 +51,7 @@
       assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
     %}
 
-    {{ 'design-tokens.css' | asset_url | stylesheet_tag }}
+    {{ 'token.css' | asset_url | stylesheet_tag }}
 
     {% style %}
       {{ settings.type_body_font | font_face: font_display: 'swap' }}
@@ -168,7 +168,7 @@
         --product-card-quick-add-padding-x: {{ settings.card_quick_add_padding_horizontal | divided_by: 10.0 }}rem;
         --product-card-quick-add-font-size: {{ settings.card_quick_add_font_size | divided_by: 10.0 }}rem;
         --product-card-quick-add-letter-spacing: {{ settings.card_quick_add_letter_spacing | divided_by: 10.0 }}px;
-        --product-card-quick-add-transition-duration: {{ settings.card_quick_add_transition_duration | divided_by: 1000.0 }}s;
+        --product-card-quick-add-transition-duration : {{ settings.card_quick_add_transition_duration | divided_by: 1000.0 }}s;
         --product-card-quick-add-transition-easing: cubic-bezier(0.2, 0.9, 0.4, 1.1);
         --product-card-quick-add-hover-scale: 1.02;
 

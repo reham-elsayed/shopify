@@ -111,7 +111,7 @@
       {
         "type": "font_picker",
         "id": "type_header_font",
-        "default": "assistant_n4",
+        "default": "arial_n4",
         "label": "t:settings_schema.typography.settings.type_header_font.label"
       },
       {
@@ -131,7 +131,7 @@
       {
         "type": "font_picker",
         "id": "type_body_font",
-        "default": "assistant_n4",
+        "default": "arial_n4",
         "label": "t:settings_schema.typography.settings.type_body_font.label"
       },
       {
@@ -155,7 +155,7 @@
         "min": 1000,
         "max": 1600,
         "step": 100,
-        "default": 1200,
+        "default": 1400,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.page_width.label"
       },
@@ -180,20 +180,20 @@
       {
         "type": "range",
         "id": "spacing_grid_horizontal",
-        "min": 4,
+        "min": 0,
         "max": 40,
         "step": 4,
-        "default": 8,
+        "default": 0,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.spacing_grid_horizontal.label"
       },
       {
         "type": "range",
         "id": "spacing_grid_vertical",
-        "min": 4,
+        "min": 0,
         "max": 40,
         "step": 4,
-        "default": 8,
+        "default": 0,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.spacing_grid_vertical.label"
       }
@@ -212,6 +212,10 @@
         "type": "select",
         "id": "animations_hover_elements",
         "options": [
+          {
+  "value": "image-scale",
+  "label": "t:settings_schema.animations.settings.animations_hover_elements.options__4.label"
+},
           {
             "value": "default",
             "label": "t:settings_schema.animations.settings.animations_hover_elements.options__1.label"
@@ -627,6 +631,7 @@
         "label": "t:settings_schema.cards.settings.media_background.label",
         "default": "#f5f5f5"
       },
+      // keep
       {
         "type": "range",
         "id": "card_content_padding",
@@ -637,6 +642,7 @@
         "label": "t:settings_schema.cards.settings.content_padding.label",
         "default": 8
       },
+      //keep
       {
         "type": "range",
         "id": "card_content_gap",
@@ -657,15 +663,17 @@
         "label": "t:settings_schema.cards.settings.badge_offset.label",
         "default": 16
       },
+      //keep
       {
         "type": "range",
         "id": "card_title_line_clamp",
         "min": 1,
         "max": 4,
         "step": 1,
-        "label": "t:settings_schema.cards.settings.title_line_clamp.label",
+        "label": "t:settings_schema  .cards.settings.title_line_clamp.label",
         "default": 2
       },
+      //keep
       {
         "type": "range",
         "id": "card_media_height_ratio",
@@ -680,6 +688,7 @@
         "type": "header",
         "content": "t:settings_schema.cards.settings.header__typography.content"
       },
+      //remove
       {
         "type": "range",
         "id": "card_title_font_size",
@@ -690,6 +699,7 @@
         "label": "t:settings_schema.cards.settings.title_font_size.label",
         "default": 16
       },
+      //remove
       {
         "type": "range",
         "id": "card_title_font_weight",
@@ -699,6 +709,7 @@
         "label": "t:settings_schema.cards.settings.title_font_weight.label",
         "default": 500
       },
+      //remove
       {
         "type": "range",
         "id": "card_price_font_size",
@@ -709,6 +720,7 @@
         "label": "t:settings_schema.cards.settings.price_font_size.label",
         "default": 13
       },
+      //remove
       {
         "type": "range",
         "id": "card_price_opacity",
@@ -807,6 +819,7 @@
         "label": "t:settings_schema.cards.settings.quick_add_padding_horizontal.label",
         "default": 14
       },
+      //remove
       {
         "type": "range",
         "id": "card_quick_add_font_size",
@@ -817,6 +830,7 @@
         "label": "t:settings_schema.cards.settings.quick_add_font_size.label",
         "default": 13
       },
+      //remove
       {
         "type": "range",
         "id": "card_quick_add_letter_spacing",
@@ -914,6 +928,7 @@
   {
     "name": "t:settings_schema.collection_cards.name",
     "settings": [
+      //keep
       {
         "type": "select",
         "id": "collection_card_style",
@@ -930,6 +945,7 @@
         "default": "standard",
         "label": "t:settings_schema.collection_cards.settings.style.label"
       },
+      //maybe  keep
       {
         "type": "range",
         "id": "collection_card_image_padding",
@@ -940,6 +956,7 @@
         "label": "t:settings_schema.global.settings.image_padding.label",
         "default": 0
       },
+      //keep
       {
         "type": "select",
         "id": "collection_card_text_alignment",
@@ -960,6 +977,7 @@
         "default": "left",
         "label": "t:settings_schema.global.settings.text_alignment.label"
       },
+      //keep
       {
         "type": "color_scheme",
         "id": "collection_card_color_scheme",
@@ -970,6 +988,7 @@
         "type": "header",
         "content": "t:settings_schema.global.settings.header__border.content"
       },
+      //remove
       {
         "type": "range",
         "id": "collection_card_border_thickness",
@@ -980,6 +999,7 @@
         "label": "t:settings_schema.global.settings.thickness.label",
         "default": 0
       },
+      //remove
       {
         "type": "range",
         "id": "collection_card_border_opacity",
@@ -994,7 +1014,7 @@
         "type": "range",
         "id": "collection_card_corner_radius",
         "min": 0,
-        "max": 40,
+        "max": 8,
         "step": 2,
         "unit": "px",
         "label": "t:settings_schema.global.settings.corner_radius.label",
@@ -1004,6 +1024,7 @@
         "type": "header",
         "content": "t:settings_schema.global.settings.header__shadow.content"
       },
+      //remove
       {
         "type": "range",
         "id": "collection_card_shadow_opacity",
@@ -1014,6 +1035,7 @@
         "label": "t:settings_schema.global.settings.opacity.label",
         "default": 10
       },
+      //remove
       {
         "type": "range",
         "id": "collection_card_shadow_horizontal_offset",
@@ -1024,6 +1046,7 @@
         "label": "t:settings_schema.global.settings.horizontal_offset.label",
         "default": 0
       },
+      //remove
       {
         "type": "range",
         "id": "collection_card_shadow_vertical_offset",
@@ -1034,6 +1057,7 @@
         "label": "t:settings_schema.global.settings.vertical_offset.label",
         "default": 0
       },
+      //remove
       {
         "type": "range",
         "id": "collection_card_shadow_blur",

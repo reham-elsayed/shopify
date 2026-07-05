@@ -1,12 +1,4 @@
-:root {
-  --alpha-button-background: 1;
-  --alpha-button-border: 1;
-  --alpha-link: 0.85;
-  --alpha-badge-border: 0.1;
-  --focused-base-outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
-  --focused-base-outline-offset: 0.3rem;
-  --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
-}
+/* Base root tokens moved to token.css */
 
 .product-card-wrapper .card,
 .contains-card--product {
@@ -468,19 +460,7 @@ details > * {
   }
 }
 
-:root {
-  --duration-short: 100ms;
-  --duration-default: 200ms;
-  --duration-announcement-bar: 250ms;
-  --duration-medium: 300ms;
-  --duration-long: 500ms;
-  --duration-extra-long: 600ms;
-  --duration-extra-longer: 750ms;
-  --duration-extended: 3s;
-  --ease-out-slow: cubic-bezier(0, 0, 0.3, 1);
-  --animation-slide-in: slideIn var(--duration-extra-long) var(--ease-out-slow) forwards;
-  --animation-fade-in: fadeIn var(--duration-extra-long) var(--ease-out-slow);
-}
+/* Animation tokens moved to token.css */
 
 .underlined-link,
 .customer a,
@@ -3389,7 +3369,55 @@ details-disclosure > details {
     --border-offset: 0px; /* Prevent the border from growing on buttons when this effect is on. */
   }
 }
+/* animate image scale on hover  ------------------------------new*/
+.animate--hover-image-scale .card-wrapper .card__inner .media img {
+  transition: transform var(--duration-medium) var(--ease-out-slow) !important;
+}
 
+/* Force image zoom on hover */
+.animate--hover-image-scale .card-wrapper:hover .card__inner .media img {
+  transform: scale(1.06) !important;
+}
+
+/* Contain container overflow boundaries */
+.animate--hover-image-scale .card--card,
+.animate--hover-image-scale .card--standard .card__inner {
+  overflow: hidden !important;
+}
+/* Remove the hover box shadow globally when Image Scale is active */
+.animate--hover-image-scale .card-wrapper:hover,
+.animate--hover-image-scale .card-wrapper:hover .card,
+.animate--hover-image-scale .card-wrapper:hover .card__inner {
+  box-shadow: none !important;
+}
+/* Stop the card from lifting up when Image Scale is active */
+.animate--hover-image-scale .card-wrapper:hover,
+.animate--hover-image-scale .card-wrapper:hover .card,
+.animate--hover-image-scale .card-wrapper:hover .card__inner,
+.animate--hover-image-scale .card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+/* Create a faint inside shadow over the card asset container */
+.animate--hover-image-scale .card__inner .media::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Inset shadow configuration: subtle black with low opacity */
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.04); 
+  pointer-events: none; /* Allows clicks to pass through to the image link */
+  transition: box-shadow var(--duration-medium) var(--ease-out-slow);
+  z-index: 2; /* Forces the shadow overlay to sit on top of the scaling image */
+}
+
+/* Optional: Make the inside shadow slightly deeper on hover for premium feedback */
+.animate--hover-image-scale .card-wrapper:hover .card__inner .media::after {
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.08);
+}
+/* end of  scale effect*/
 /* Loading spinner */
 .loading__spinner {
   position: absolute;

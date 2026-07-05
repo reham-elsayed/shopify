@@ -1,0 +1,496 @@
+/* =============================================================
+   SHOP THE LOOK — layout system
+   Desktop (≥990px) : 3-column flex — sticky hero editorial effect
+   Mobile/Tablet (<990px) : slideshow-component swipe slider
+   ============================================================= */
+
+/* ── Reduced motion support ─────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Shared section chrome ────────────────────────────────── */
+.shop-the-look {
+  position: relative;
+}
+
+.shop-the-look__heading {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.shop-the-look__subheading {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* ── Hero image shared ────────────────────────────────────── */
+.shop-the-look__hero-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* =============================================================
+   DESKTOP  (≥990px)
+
+   Three explicit column containers:
+     .stl-left-col   — flex stack, odd products (1, 3, 5, 7)
+     .stl-hero-col   — sticky hero in the middle
+     .stl-right-col  — flex stack, even products (2, 4, 6, 8)
+
+   The hero uses position:sticky so it pins to the vertical
+   centre of the viewport while the product columns scroll past.
+   The section container must NOT have overflow:hidden for
+   sticky to work — .page-width only constrains max-width.
+   ============================================================= */
+
+@media screen and (min-width: 990px) {
+
+  /* ── Hide mobile slider ── */
+  .shop-the-look__mobile-wrapper {
+    display: none;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     CANVAS — flex row, columns stretch to fill the row height
+     ───────────────────────────────────────────────────────── */
+  .shop-the-look__canvas--desktop {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;       /* columns all match the tallest sibling */
+    gap: 0;
+    width: 100%;
+    position: relative;
+    /* NO overflow:hidden — required for sticky to propagate */
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     Subtle column dividers (pseudo-elements on canvas)
+     ───────────────────────────────────────────────────────── */
+  .shop-the-look__canvas--desktop::before,
+  .shop-the-look__canvas--desktop::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.07);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .shop-the-look__canvas--desktop::before { left: 29.85%; }
+  .shop-the-look__canvas--desktop::after  { right: 29.85%; }
+
+  /* ─────────────────────────────────────────────────────────
+     COLUMN WRAPPERS
+     ───────────────────────────────────────────────────────── */
+  .stl-left-col,
+  .stl-right-col {
+    flex: 1 1 0;                /* equal flanking columns (~30% each) */
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .stl-hero-col {
+    flex: 0 0 40%;              /* hero column fixed at 40% width */
+    min-width: 0;
+    /* Do NOT set position:relative + overflow:hidden here —
+       would clip the sticky child */
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     HERO — sticky centred in viewport during scroll
+
+     top: 50vh  → the top edge of the sticky box is 50% down
+     transform: translateY(-50%) → shifts it up by half its own
+     height, visually centring it on screen.
+     ───────────────────────────────────────────────────────── */
+  .shop-the-look__hero {
+    position: sticky;
+    top: 50vh;
+    /* transform: translateY(-50%); */
+    width: 100%;
+    overflow: hidden;
+    /* max viewport height so the image never overflows vertically */
+    max-height: 90vh;
+  }
+
+  .shop-the-look__hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    max-height: 90vh;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     DESKTOP PRODUCT TILES
+
+     Each tile = fixed-aspect image + fixed-height info card.
+     Image uses aspect-ratio so it NEVER collapses/stretches.
+     ───────────────────────────────────────────────────────── */
+  .lookbook-product--desktop {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    width: 100%;
+  }
+
+  /* Image link — fixed portrait aspect, object-fit:cover fills it */
+  .lookbook-product--desktop .lookbook-product__image-link {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .lookbook-product--desktop .lookbook-product__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .lookbook-product--desktop:hover .lookbook-product__image {
+    transform: scale(1.04);
+  }
+
+  /* Focus ring on image link */
+  .lookbook-product--desktop .lookbook-product__image-link:focus-visible {
+    outline: 3px solid #000;
+    outline-offset: -3px;
+  }
+
+  /* Image placeholder when no product image set */
+  .lookbook-product__image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     INFO CARD — fixed height, decoupled from image dimensions
+
+     Flow element (not absolute overlay) that sits below the
+     image. min-height keeps it uniform across all tiles.
+     ───────────────────────────────────────────────────────── */
+  .lookbook-product__overlay {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: #fff;
+    padding: 0.85rem 1rem 0.8rem;
+    width: 100%;
+    min-height: 110px;
+    flex-shrink: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+    transition: background 0.2s ease;
+  }
+
+  .lookbook-product--desktop:hover .lookbook-product__overlay {
+    background: #fafafa;
+  }
+
+  .shop-the-look__info {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+    background: transparent;
+  }
+
+  /* Title — one line, ellipsis truncation */
+  .shop-the-look__title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #111;
+    line-height: 1.4;
+  }
+
+  /* Price */
+  .shop-the-look__price {
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.55);
+    margin-bottom: 0.55rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* Add to cart button */
+  .shop-the-look__button {
+    display: block;
+    width: 100%;
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    font-family: inherit;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+    margin-top: auto;
+  }
+
+  .shop-the-look__button:hover {
+    background: #333;
+  }
+
+  .shop-the-look__button:active {
+    transform: scale(0.98);
+  }
+
+  .shop-the-look__button:focus-visible {
+    outline: 3px solid #000;
+    outline-offset: 2px;
+  }
+}
+
+/* =============================================================
+   MOBILE & TABLET  (<990px)
+   ============================================================= */
+
+@media screen and (max-width: 989px) {
+
+  /* Hide the desktop canvas */
+  .shop-the-look__canvas--desktop {
+    display: none;
+  }
+
+  /* ── Mobile wrapper: hero stacked above slider ── */
+  .shop-the-look__mobile-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* ── Hero: full-width portrait ── */
+  .shop-the-look__hero--mobile {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .shop-the-look__hero--mobile .shop-the-look__hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ── Slider track ── */
+  .shop-the-look__slider-track {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 16px;
+    padding: 4px 20px 16px;
+    scrollbar-width: none;
+  }
+
+  .shop-the-look__slider-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Slide card ── */
+  .lookbook-product--slide {
+    flex: 0 0 72vw;
+    max-width: 280px;
+    min-width: 200px;
+    scroll-snap-align: center;
+    height: auto;
+  }
+
+  @media screen and (min-width: 600px) {
+    .lookbook-product--slide {
+      flex: 0 0 46vw;
+      max-width: 320px;
+    }
+  }
+
+  /* ── Card internals ── */
+  .lookbook-product__card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    height: 100%;
+  }
+
+  .lookbook-product__image-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #f5f5f5;
+    flex-shrink: 0;
+  }
+
+  .lookbook-product__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .lookbook-product__card:hover .lookbook-product__image {
+    transform: scale(1.03);
+  }
+
+  .lookbook-product__link:focus-visible {
+    outline: 3px solid #000;
+    outline-offset: 2px;
+  }
+
+  .lookbook-product__meta {
+    padding: 10px 14px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .product-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .product-price {
+    font-size: 0.85rem;
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  .lookbook-product__quick-add {
+    padding: 0 14px 14px;
+    margin-top: auto;
+  }
+
+  /* ── Slider navigation ── */
+  .slideshow__controls.slider-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 12px;
+    padding-bottom: 4px;
+  }
+
+  .slider-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .slider-button:hover {
+    background: #000;
+    border-color: #000;
+  }
+
+  .slider-button:focus-visible {
+    outline: 3px solid #000;
+    outline-offset: 2px;
+  }
+
+  .slider-button:hover .svg-wrapper svg {
+    fill: #fff;
+  }
+
+  .slider-button--prev .svg-wrapper {
+    transform: rotate(90deg);
+    display: flex;
+  }
+
+  .slider-button--next .svg-wrapper {
+    transform: rotate(-90deg);
+    display: flex;
+  }
+
+  /* Dot indicators */
+  .slider-counter--dots {
+    display: flex;
+    align-items: center;
+  }
+
+  .slideshow__control-wrapper {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .slider-counter__link--dots {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slider-counter__link--dots:focus-visible {
+    outline: 3px solid #000;
+    outline-offset: 2px;
+    border-radius: 50%;
+  }
+
+  .slider-counter__link--dots .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
+    display: block;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .slider-counter__link--dots.active .dot,
+  .slider-counter__link--dots[aria-current="true"] .dot {
+    background: #000;
+    transform: scale(1.3);
+  }
+}

@@ -334,6 +334,9 @@
           "options__3": {
             "label": "3D lift"
           },
+          "options__4": {
+            "label": "Image Scale (Editorial)"
+          },
           "label": "Hover effect",
           "info": "Affects cards and buttons"
         }

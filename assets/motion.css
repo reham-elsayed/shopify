@@ -1,17 +1,6 @@
 /* motion.css - Premium Restrained Motion System */
 
-:root {
-  --motion-fast: 0.15s;
-  --motion-medium: 0.3s;
-  --motion-slow: 0.5s;
-
-  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-  --ease-smooth: cubic-bezier(0.19, 1, 0.22, 1);
-
-  /* Subtle hover elevation */
-  --card-lift: -1px;
-}
+/* Motion tokens moved to token.css */
 
 /* Image hover effects - image-first, subtle zoom */
 @supports (object-fit: cover) {

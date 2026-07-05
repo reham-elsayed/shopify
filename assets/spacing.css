@@ -3,41 +3,7 @@
    References theme settings via theme.liquid
 ========================================= */
 
-:root {
-  --space-0: 0;
-  --space-1: calc(var(--grid-mobile-horizontal-spacing) * 0.5);
-  --space-2: calc(var(--grid-mobile-horizontal-spacing) * 1);
-  --space-3: calc(var(--grid-mobile-horizontal-spacing) * 1.5);
-  --space-4: calc(var(--grid-mobile-horizontal-spacing) * 2);
-  --space-5: var(--grid-desktop-vertical-spacing);
-  --space-6: calc(var(--grid-desktop-vertical-spacing) * 1.33);
-  --space-7: calc(var(--grid-desktop-vertical-spacing) * 2);
-  --space-8: calc(var(--grid-desktop-vertical-spacing) * 2.67);
-  --space-9: calc(var(--spacing-sections-mobile) * 0.8);
-  --space-10: var(--spacing-sections-desktop);
-
-  /* Section Spacing */
-  --section-padding-y: var(--spacing-sections-desktop);
-  --section-padding-y-mobile: var(--spacing-sections-mobile);
-
-  /* Content Widths */
-  --container-sm: 900px;
-  --container-md: var(--page-width);
-  --container-lg: 1440px;
-
-  /* Layout Gutters */
-  --gutter-desktop: var(--grid-desktop-horizontal-spacing);
-  --gutter-mobile: var(--grid-mobile-horizontal-spacing);
-}
-
-@media screen and (min-width: 750px) {
-  :root {
-    --space-1: calc(var(--grid-desktop-horizontal-spacing) * 0.25);
-    --space-2: calc(var(--grid-desktop-horizontal-spacing) * 0.5);
-    --space-3: calc(var(--grid-desktop-horizontal-spacing) * 0.75);
-    --space-4: calc(var(--grid-desktop-horizontal-spacing) * 1);
-  }
-}
+/* Spacing tokens moved to token.css */
 
 /* =========================================
    CONSTELLATION OF CONTAINERS
@@ -94,10 +60,10 @@
   gap: var(--space-4) !important;
 }
 
-.space-grid,
+/* .space-grid,
 .grid-spacing {
   gap: var(--space-3) !important;
-}
+} */
 
 .space-editorial,
 .editorial-spacing {

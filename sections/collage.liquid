@@ -1,4 +1,4 @@
-{{ 'collage.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'collage.css' | asset_url | stylesheet_tag }} {% endcomment %}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
@@ -261,7 +261,7 @@
     {
       "type": "header",
       "content": "t:sections.collage.settings.header_layout.content"
-    },       
+    },
     {
       "type": "select",
       "id": "desktop_layout",

@@ -1,3 +1,5 @@
+
+
 .collection-list {
   margin-top: 0;
   margin-bottom: 0;
@@ -58,4 +60,18 @@
 
 .collection-list-view-all {
   margin-top: 2rem;
+}
+
+@media screen and (min-width: 990px) {
+  /* Forces Row 1 (first 2 items) to render at perfect 50% width allocations */
+  .collection-list.grid--staggered-rows .grid__item.grid-item--half {
+    width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2) !important;
+    max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2) !important;
+  }
+
+  /* Forces Row 2+ (items 3, 4, 5...) to render at perfect 33.33% width allocations */
+  .collection-list.grid--staggered-rows .grid__item.grid-item--third {
+    width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3) !important;
+    max-width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3) !important;
+  }
 }
