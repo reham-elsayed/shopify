@@ -1,0 +1,268 @@
+.editorial-hero {
+  --editorial-hero-gap: clamp(.5rem, 1.3vw, 1rem);
+  --editorial-hero-panel: rgba(var(--color-foreground), 0.06);
+  overflow: hidden;
+  padding-top:10px;
+}
+
+.editorial-hero__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: repeat(10, minmax(2rem, auto));
+  gap: var(--editorial-hero-gap);
+  align-items: center;
+}
+.hero-section {
+  position: relative;
+  background-color: #f7f6f2; /* Base canvas color */
+  overflow: hidden;
+}
+
+/* Subtle warm ambient lighting behind the main elements */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 30%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(
+    circle,
+    rgba(235, 230, 220, 0.7) 0%,
+    rgba(247, 246, 242, 0) 70%
+  );
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* .editorial-hero__slides {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important; 
+  width: 100%;
+  overflow-x: hidden; 
+  position: relative;
+}
+
+
+.editorial-hero__slide {
+  flex: 0 0 100% !important;
+  min-width: 100% !important; 
+  height: auto;
+} */
+/* Apply to each card container inside the grid */
+/* .hero-card {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+} */
+
+/* Offset elevation: Odd cards sit higher, Even cards sit slightly lower */
+.editorial-hero__image--middle-right,  .editorial-hero__image--bottom-left, .editorial-hero__image--bottom-right {
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05),
+              0 10px 15px -10px rgba(0, 0, 0, 0.03);
+}
+
+.editorial-hero__image--top-left, .editorial-hero__image--top-right-small, .editorial-hero__slider{
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.08),
+              0 12px 24px -12px rgba(0, 0, 0, 0.04);
+}
+.editorial-hero__wordmark { grid-column: 1 / span 3; grid-row: 1 / span 2; }
+.editorial-hero__wordmark p { margin: 0; color: rgb(var(--color-foreground)); font-family: 'Canela', var(--font-heading-family); font-size: clamp(3.8rem, 7.5vw, 9rem); font-weight: 800; letter-spacing: -0.1em; line-height: 0.7; }
+.editorial-hero__image { background: var(--editorial-hero-panel); overflow: hidden; }
+.editorial-hero__image img, .editorial-hero__image svg, .editorial-hero__slide img, .editorial-hero__slide svg { display: block; width: 100%; height: 100%; object-fit: cover;mix-blend-mode: multiply; }
+.editorial-hero__image--top-left { grid-column: 4 / span 2; grid-row: 2 / span 3; aspect-ratio: 1 / 1; display:none; }
+.editorial-hero__slider { position: relative; display: block; overflow: hidden; background: var(--editorial-hero-panel); }
+.editorial-hero__slider--top { grid-column:  3/ span 4 ; grid-row: 1 / span 10; aspect-ratio: 3 / 4;padding:0;}
+.editorial-hero__slider--bottom { grid-column: 7 / span 5; grid-row: 1 / span 10; aspect-ratio: 3 / 4;padding:0;margin-left:-1rem ; }
+.editorial-hero__slides, .editorial-hero__slide { width: 100%; height: 100%; }
+.editorial-hero__slide { position: absolute; inset: 0; opacity: 0; transition: opacity var(--motion-medium) var(--ease-out-cubic); pointer-events: none; }
+.editorial-hero__slide.is-active { opacity: 1; z-index: 1; pointer-events: auto;} 
+.editorial-hero__slider-controls { position: absolute; z-index: 2; right: var(--space-2); bottom: var(--space-2); display: flex; gap: 0.4rem; opacity: 0; transition: opacity var(--transition-base) ease; }
+.editorial-hero__slider:hover .editorial-hero__slider-controls, .editorial-hero__slider:focus-within .editorial-hero__slider-controls { opacity: 1; }
+.editorial-hero__slider-button { display: grid; width: 3.2rem; height: 3.2rem; place-items: center; border: 0; border-radius: var(--radius-full); background: rgb(var(--color-background)); color: rgb(var(--color-foreground)); cursor: pointer; font-size: 2.2rem; line-height: 1; }
+.editorial-hero__image--top-right-small { grid-column: 9 / span 1; grid-row: 2 / span 2; aspect-ratio: 1 / 1.2;display:none; }
+.editorial-hero__brand { grid-column: 11 / span 2; grid-row: 2 / span 3; align-self: start;z-index:99;mix-blend-mode: difference;}
+.editorial-hero__brand p { margin: 0; color: rgb(var(--color-foreground)); font-family: 'Canela', var(--font-heading-family); font-size: clamp(2.3rem, 4vw, 5.8rem); font-weight: 800; letter-spacing: -0.08em; line-height: 0.78; }
+.editorial-hero__brand p + p { margin-top: var(--space-2); font-family: 'Helvetica Neue', var(--font-body-family); font-size: clamp(0.7rem, 0.8vw, 1rem); font-weight: 500; letter-spacing: 0.08em; line-height: 1.2; }
+.editorial-hero__image--top-right { grid-column: 10 / span 1; grid-row: 3 / span 2; aspect-ratio: 1 / 1.25; display:none; }
+.editorial-hero__image--bottom-left { grid-column: 1 / span 2; grid-row: 6 / span 4; aspect-ratio: 2 / 3; }
+.editorial-hero__content { grid-column: 5 / span 2; grid-row: 7 / span 2; text-align: center; z-index:99 ;mix-blend-mode: difference;}
+.editorial-hero__content p { margin: 0; color: rgb(var(--color-foreground)); font-family: 'Canela', var(--font-heading-family); font-size: clamp(2rem, 3vw, 4rem); font-weight: 600; line-height: 1.15; }
+.editorial-hero__image--middle-right { grid-column: 9 / span 2; grid-row: 6 / span 3; aspect-ratio: 1 / 1;display:none; }
+.editorial-hero__image--bottom-right { grid-column: 11 / span 2; grid-row: 7 / span 3; aspect-ratio: 1 / 1; }
+
+@media screen and (min-width: 990px) {
+  .editorial-hero .page-width {
+    box-sizing: border-box;
+    height: 100svh;
+    max-height: 100vh;
+  }
+
+  .editorial-hero__grid {
+    height: 100%;
+    grid-template-rows: repeat(10, minmax(0, 1fr));
+  }
+
+  .editorial-hero__image,
+  .editorial-hero__slider {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+     transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+  overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .editorial-hero__grid { grid-template-rows: repeat(8, minmax(3rem, auto)); }
+  .editorial-hero__wordmark { grid-column: 1 / span 4; }
+  .editorial-hero__image--top-left { grid-column: 1 / span 3; grid-row: 3 / span 2; display:none;}
+  .editorial-hero__slider--top { grid-column: 5 / span 4; grid-row: 1 / span 5; }
+  .editorial-hero__brand { grid-column: 10 / span 3; }
+  .editorial-hero__image--top-right-small { grid-column: 9 / span 1; grid-row: 3 / span 1; }
+  .editorial-hero__image--top-right { grid-column: 10 / span 2; grid-row: 3 / span 2; }
+  .editorial-hero__image--bottom-left { grid-column: 1 / span 3; grid-row: 6 / span 4; }
+  .editorial-hero__content { grid-column: 4 / span 2; grid-row: 6 / span 2; }
+  .editorial-hero__slider--bottom { grid-column: 6 / span 4; grid-row: 5 / span 5; }
+  .editorial-hero__image--middle-right { grid-column: 10 / span 2; grid-row: 5 / span 2; }
+  .editorial-hero__image--bottom-right { grid-column: 11 / span 2; grid-row: 7 / span 2; }
+}
+
+@media screen and (max-width: 749px) {
+  .editorial-hero__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; gap: var(--space-3); }
+  .editorial-hero__wordmark, .editorial-hero__brand, .editorial-hero__content, .editorial-hero__image, .editorial-hero__slider { grid-column: auto; grid-row: auto; }
+  .editorial-hero__wordmark { grid-column: 1 / -1; }
+  .editorial-hero__wordmark p { font-size: clamp(4rem, 21vw, 8rem); }
+  .editorial-hero__brand { grid-column: 1 / -1; order: 9; }
+  .editorial-hero__brand p { font-size: clamp(3.2rem, 16vw, 5rem); }
+  .editorial-hero__content { display: grid; place-items: center; text-align: left; }
+  .editorial-hero__content p { font-size: clamp(1.8rem, 9vw, 3.2rem); }
+  .editorial-hero__slider { aspect-ratio: 3 / 4; }
+  .editorial-hero__image--bottom-left, .editorial-hero__image--bottom-right { aspect-ratio: 1 / 1.35; }
+  .editorial-hero__slider-controls { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) { .editorial-hero__slide { transition: none; } }
+
+/* ==========================================================================
+   IMAGE & CONTAINER STYLES (Enables Image Zoom)
+   ========================================================================== */
+.editorial-hero__media-container {
+  position: relative;
+  /* overflow: hidden; 
+  border-radius: 8px;  */
+}
+
+/* Image Scale Hover Effect (Slow & Smooth) */
+.editorial-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+/* Trigger Image Zoom on Container Hover */
+.editorial-hero__media-container:hover .editorial-hero__image {
+  transform: scale(1.06); /* Scaled for refined editorial zoom */
+}
+
+
+/* ==========================================================================
+   FLOATING CONTENT CARD (.editorial-hero__caption)
+   ========================================================================== */
+.editorial-hero__caption {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 10;
+  
+  /* Sizing: ~18-25% width, ~12-18% height targets */
+  width:70%;
+  min-height: 10%;
+  padding: 1rem 1.25rem;
+  
+  /* Compact Floating Pill / Soft Rectangle (Non-Traditional) */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  box-sizing: border-box;
+
+  /* Card Hover Growth Animation */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.4s ease, 
+              box-shadow 0.4s ease;
+}
+
+/* Card grows slightly on hover */
+.editorial-hero__media-container:hover .editorial-hero__caption,
+.editorial-hero__caption:hover {
+  transform: translateY(-4px) scale(1.02);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ==========================================================================
+   CAPTION ELEMENTS (.editorial-hero__caption-title & cta)
+   ========================================================================== */
+.editorial-hero__caption-title {
+font-size: clamp(12px, 8cqw, 20px);
+  font-weight: 500;
+  line-height: 1.2;
+  color: #111111;
+  
+  /* Single-line truncating if product name is long */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* margin-bottom: 0.25rem; */
+}
+
+.editorial-hero__caption-cta {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #111111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+width: 100%;
+  /* Smooth Letter Spacing Expansion */
+  letter-spacing: 0.05em;
+  transition: letter-spacing 0.3s ease, opacity 0.3s ease;
+}
+
+/* Shop word expands letter-spacing without forcing container growth */
+.editorial-hero__caption:hover .editorial-hero__caption-cta {
+  letter-spacing: 0.18em;
+}
+
+
+/* ==========================================================================
+   SIZE VARIATIONS FOR SMALLER MEDIA BLOCKS
+   ========================================================================== */
+/* Apply this modifier class to smaller thumbnail containers */
+.editorial-hero__media-container--small .editorial-hero__caption {
+  width: clamp(140px, 18vw, 160px);
+  min-height: 70px;
+  padding: 0.75rem 1rem;
+}
+
+.editorial-hero__media-container--small .editorial-hero__caption-title {
+  font-size: 14px;
+}

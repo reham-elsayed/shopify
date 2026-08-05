@@ -697,6 +697,14 @@
               "info": "Describe the video for customers using screen readers. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#video-block)"
             }
           }
+        },
+       "editorial-video":{
+         "name":"editorial-video",
+          "settings":{ "type": "video",
+      "id": "editorial_video",
+      "label": "Magazine Editorial Video",
+      "info": "This native video will play automatically on the main card only when Magazine Preset is active. Upload via Shopify Admin > Content > Files."
+    }
         }
       },
       "presets": {

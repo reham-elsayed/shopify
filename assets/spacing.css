@@ -9,7 +9,7 @@
    CONSTELLATION OF CONTAINERS
 ========================================= */
 
-.page-width {
+/* .page-width {
   max-width: var(--container-lg) !important;
   margin-inline: auto !important;
   padding-inline: var(--gutter-desktop) !important;
@@ -19,7 +19,7 @@
   .page-width {
     padding-inline: var(--gutter-mobile) !important;
   }
-}
+} */
 
 /* =========================================
    OVERRIDE DAWN'S RANDOM SPACING

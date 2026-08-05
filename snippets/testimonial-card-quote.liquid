@@ -1,0 +1,18 @@
+<article class="editorial-testimonial__card editorial-testimonial__card--quote" data-testimonial-card data-testimonial-category="{{ block.settings.category | default: 'community' }}">
+  <div class="editorial-testimonial__card-body">
+    {% if block.settings.rating > 0 %}
+      <p class="editorial-testimonial__rating" aria-label="{{ block.settings.rating }} out of 5 stars">
+        {% for star in (1..5) %}<span aria-hidden="true">{% if star <= block.settings.rating %}★{% else %}☆{% endif %}</span>{% endfor %}
+      </p>
+    {% endif %}
+    <blockquote class="editorial-testimonial__quote">{{ block.settings.quote | escape }}</blockquote>
+    <div class="editorial-testimonial__author">
+      {% if block.settings.avatar != blank %}{{ block.settings.avatar | image_url: width: 96 | image_tag: class: 'editorial-testimonial__avatar', widths: '48, 96', alt: block.settings.author | escape }}{% endif %}
+      <div>
+        <cite>{{ block.settings.author | escape }}</cite>
+        {% if block.settings.location != blank %}<span>{{ block.settings.location | escape }}</span>{% endif %}
+      </div>
+      {% if block.settings.verified %}<span class="editorial-testimonial__verified" aria-label="Verified purchaser">✓ <span>Verified</span></span>{% endif %}
+    </div>
+  </div>
+</article>

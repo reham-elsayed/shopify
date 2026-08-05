@@ -1,132 +1,280 @@
-.collage-wrapper-title {
-  margin-top: 0;
-  margin-bottom: 3rem;
-}
 
-.collage {
+/* Base Grid Layout */
+.editorial-grid {
   display: grid;
 }
 
-.collage__item > * {
+.editorial-grid__item > * {
   width: 100%;
+  font-size: 0;
 }
 
-.collage__item .card__content {
+.editorial-grid__item .card__content {
   flex-grow: initial;
 }
 
-@media screen and (max-width: 749px) {
-  .collage {
+@media screen and (max-width: 880px) {
+   .editorial-grid {
     grid-column-gap: var(--grid-mobile-horizontal-spacing);
     grid-row-gap: var(--grid-mobile-vertical-spacing);
+    font-size: 0;
   }
 
-  .collage--mobile {
+  .editorial-grid--mobile {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .collage--mobile .collage__item--left:nth-child(3n - 2) {
+  .editorial-grid--mobile .editorial-grid__item--left:nth-child(3n - 2) {
     grid-column: span 2;
   }
 
-  .collage--mobile .collage__item--left:nth-child(3n - 2):nth-last-child(2) {
+  .editorial-grid--mobile .editorial-grid__item--left:nth-child(3n - 2):nth-last-child(2) {
     grid-column: span 1;
   }
 
-  .collage--mobile .collage__item--left:nth-child(3n) {
+  .editorial-grid--mobile .editorial-grid__item--left:nth-child(3n) {
     grid-column-start: 2;
   }
 
-  .collage--mobile .collage__item--right:nth-child(3n - 2) {
+  .editorial-grid--mobile .editorial-grid__item--right:nth-child(3n - 2) {
     grid-column-start: 1;
   }
 
-  .collage--mobile .collage__item--right:nth-child(3n - 2):last-child {
+  .editorial-grid--mobile .editorial-grid__item--right:nth-child(3n - 2):last-child {
     grid-column: span 2;
   }
 
-  .collage--mobile .collage__item--right:nth-child(3n - 1) {
+  .editorial-grid--mobile .editorial-grid__item--right:nth-child(3n - 1) {
     grid-column-start: 2;
   }
 
-  .collage--mobile .collage__item--right:nth-child(3n) {
+  .editorial-grid--mobile .editorial-grid__item--right:nth-child(3n) {
     grid-column: 1 / span 2;
   }
 }
 
-@media screen and (min-width: 750px) {
-  .collage {
+@media screen and (min-width: 881px) {
+  .editorial-grid {
     grid-auto-flow: column;
     grid-column-gap: var(--grid-desktop-horizontal-spacing);
     grid-row-gap: var(--grid-desktop-vertical-spacing);
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-auto-rows: 28vw;
+    grid-auto-rows: minmax(28vw, auto);
   }
-  .collage .collage-card,
-.collage .card-wrapper,
-.collage .media.ratio {
-  height: 100% !important;
-}
-.collage__item {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: 100% !important;
-}
-/* Desktop layout: the first item spans two columns and two rows, while the second and third items each take one column. */
-.collage__item--left:nth-child(1) {
-  grid-column: 1 / span 2 !important;
-  grid-row: 1 / span 2 !important;
-}
 
-.collage__item--left:nth-child(2) {
-  grid-column: 3 !important;
-  grid-row: 1 !important;
-}
+  .editorial-grid .collage-card,
+  .editorial-grid .card-wrapper,
+  .editorial-grid .media.ratio {
+    height: 100% !important;
+  }
 
-  .collage__item--left:nth-child(3) {
-  grid-column: 4 !important;
-  grid-row: 1 !important;
-}
+  .editorial-grid .editorial-grid__item,
+  .editorial-grid .card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    justify-content: space-between;
+    font-size: 0;
+  }
 
-/* Mirrored layout: the large item moves to the opposite side and the smaller items mirror that placement. */
- .collage__item--left:nth-child(4) {
-  grid-column: 3 / span 2 !important;
-  grid-row: 3/ span 2 !important;
-}
+  /* Desktop layout: the first item spans two columns and two rows, while the second and third items each take one column. */
+  .editorial-grid--editorial .editorial-grid__item--left:nth-child(1) {
+    grid-column: 1 / span 2 !important;
+    grid-row: 1 / span 2 !important;
+  }
 
- .collage__item--left:nth-child(5) {
-  grid-column: 1 !important;
-  grid-row: 3 !important;
-}
+  .editorial-grid--editorial .editorial-grid__item--left:nth-child(2) {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+  }
 
- .collage__item--left:nth-child(6) {
-  grid-column: 2 !important;
-  grid-row: 3 !important;
-}
+  .editorial-grid--editorial  .editorial-grid__item--left:nth-child(3) {
+    grid-column: 4 !important;
+    grid-row: 1 !important;
+  }
 
-  .collage__item--right:nth-child(3n-1):last-child {
+  /* Mirrored layout: the large item moves to the opposite side and the smaller items mirror that placement. */
+  .editorial-grid--editorial .editorial-grid__item--left:nth-child(4) {
+    grid-column: 3 / span 2 !important;
+    grid-row: 3 / span 2 !important;
+  }
+
+  .editorial-grid--editorial .editorial-grid__item--left:nth-child(5) {
+    grid-column: 1 !important;
+    grid-row: 3 !important;
+  }
+
+  .editorial-grid--editorial .editorial-grid__item--left:nth-child(6) {
+    grid-column: 2 !important;
+    grid-row: 3 !important;
+  }
+
+  .editorial-grid--editorial .editorial-grid__item--right:nth-child(3n-1):last-child {
     grid-column: span 2;
   }
 
-  .collage__item--right:nth-child(3n) {
+  .editorial-grid--editorial .editorial-grid__item--right:nth-child(3n) {
     grid-column: 2 / span 2;
     grid-row: span 2;
   }
-   .collage__item--right:nth-child(3n - 2) {
+
+  .editorial-grid--editorial .editorial-grid__item--right:nth-child(3n - 2) {
     grid-column: 1 / span 1;
     grid-row: span 1;
   }
- 
 
-  
-
-  .collage__item--collection:only-child,
-  .collage__item--product:only-child {
+  .editorial-grid--editorial .editorial-grid__item--collection:only-child,
+  .editorial-grid--editorial .editorial-grid__item--product:only-child {
     justify-self: center;
     max-width: 73rem;
     width: 100%;
   }
 }
+
+/* Collage Layout magazine  layout desktop*/
+@media screen and (min-width: 990px) {
+  .grid__item--two-thirds {
+    width: calc(60% - var(--grid-desktop-horizontal-spacing) * 4 / 6) !important;
+    max-width: calc(60% - var(--grid-desktop-horizontal-spacing) * 4 / 6) !important;
+    height:auto;
+  }
+  
+  .grid__item--one-third {
+    width: calc(40% - var(--grid-desktop-horizontal-spacing) * 2 / 6) !important;
+    max-width: calc(40% - var(--grid-desktop-horizontal-spacing) * 2 / 6) !important;
+    height:auto;
+  }
+  .collage .card:not(.ratio),
+.grid .card:not(.ratio) {
+    height: auto !important;
+}
+.collage .card:not(.ratio) .card__content,
+.grid .card:not(.ratio) .card__content {
+    height: auto !important;  
+}
+.collage .grid__item--one-third .card-wrapper,
+  .grid .grid__item--one-third .card-wrapper,
+  .collage .grid__item--one-third .card,
+  .grid .grid__item--one-third .card,
+  .collage .grid__item--one-third .card__inner,
+  .grid .grid__item--one-third .card__inner {
+    height: auto !important;
+    min-height: unset !important; }
+  }
+
+
+
+/* ستايل كارت الفيديو السينمائي (High-End Editorial Look) */
+.magazine-cinematic-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 500px; /* أو الارتفاع اللي يناسبك */
+  overflow: hidden;
+  border-radius: var(--popup-border-radius);
+}
+
+.magazine-cinematic-card .video-media-wrapper {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 1;
+}
+
+.magazine-cinematic-card .video-media-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+/* طبقة تعتيم خفيفة وراقية جداً عشان النص الأبيض يبان فوق الفيديو */
+.magazine-cinematic-card .video-subtle-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.4) 100%);
+  z-index: 2;
+}
+
+/* تنسيق النصوص فوق الفيديو (Magazine Typography) */
+.magazine-card-overlay-content {
+  position: absolute;
+  bottom: 10%;
+  left: 8%;
+  right: 8%;
+  z-index: 3;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.magazine-subheading {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.magazine-heading {
+  font-family: var(--font-heading-family); /* بيقرأ خط العناوين الشيك بتاع الثيم */
+  font-size: 3.5rem;
+  font-weight: 400;
+  margin: 0 0 1.5rem 0;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.magazine-link {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  font-size: 1.4rem;
+  transition: opacity 0.3s ease;
+}
+
+.magazine-link:hover {
+  opacity: 0.7;
+}
+
+.vintage-cinematic-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 500px; /* أو الارتفاع اللي يناسبك */
+  overflow: hidden;
+  border-radius: var(--popup-border-radius);
+ aspect-ratio: 375 / 487;
+}
+
+.vintage-cinematic-card .video-media-wrapper {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 1;
+}
+.vintage-cinematic-card .video-media-wrapper.page-width{
+  padding:0;
+  width: 100%;
+}
+.vintage-cinematic-card .video-media-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+@media (min-width: 768px) {
+    .vintage-cinematic-card  {
+        aspect-ratio: 820 / 444;
+    }
+}
+
+/* 3. Desktop Style */
+@media (min-width: 1200px) {
+    .vintage-cinematic-card  {
+        aspect-ratio: 1440 / 568;
+    }
+}
+
+
+
 
 .collage-card {
   height: 100%;
@@ -217,4 +365,86 @@
 .collage-card .deferred-media__poster:focus {
   outline: none;
   box-shadow: none;
+}
+
+.vintage-card--height{
+  height:970px;
+ padding:52px;
+  display:flex;
+  justify-content:center;
+        align-items: stretch !important;}
+ .vintage-card-full-height{
+ 
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+ }
+
+/* ============================================================
+   Vintage Layout – Row 2: triptych with tall centre card
+   Spec: side cards 254×346 px (ratio 127:173), centre 336×458 px
+         (ratio 168:229), gap 53 px. Cards align to the bottom
+         so the taller centre card rises above the side cards.
+   ============================================================ */
+@media screen and (min-width: 990px) {
+  /*
+   * Column widths are proportional to the design widths:
+   *   left : centre : right  =  254 : 336 : 254  ≈  1 : 1.323 : 1
+   * The 53 px gaps are subtracted from each track via
+   * calc() so the ratio is preserved at any container width.
+   */
+  [id^="Grid-Row2-"].grid--3-col-desktop {
+    display: grid !important;
+    grid-template-columns:
+      calc((100% - 2 * 53px) * 254 / 844)
+      calc((100% - 2 * 53px) * 336 / 844)
+      calc((100% - 2 * 53px) * 254 / 844);
+    grid-template-rows: auto;
+    /* Align to the bottom so the taller centre card ascends upward */
+    align-items: center;
+    gap: 53px;
+    margin-top: var(--grid-desktop-vertical-spacing);
+  }
+
+  /* Reset any flex-based widths injected by base.css */
+  [id^="Grid-Row2-"].grid--3-col-desktop > .grid__item {
+    width: 100% !important;
+    max-width: 100% !important;
+    /* Let the grid track, not the item, control the width */
+    flex: none !important;
+  }
+
+  /* ── Side cards (1st & 3rd): 254×346 → aspect-ratio 127/173 ── */
+  [id^="Grid-Row2-"].grid--3-col-desktop > .grid__item:nth-child(1),
+  [id^="Grid-Row2-"].grid--3-col-desktop > .grid__item:nth-child(3) {
+    aspect-ratio: 127 / 173; /* 254/346 simplified */
+    height: auto;             /* let aspect-ratio drive the height */
+    overflow: hidden;
+  }
+
+  /* ── Centre card: 336×458 → aspect-ratio 168/229 ── */
+  [id^="Grid-Row2-"].grid--3-col-desktop > .grid__item:nth-child(2) {
+    aspect-ratio: 168 / 229; /* 336/458 simplified */
+    height: auto;
+    overflow: hidden;
+  }
+
+  /* Make every inner wrapper fill its grid item completely */
+  [id^="Grid-Row2-"].grid--3-col-desktop > .grid__item .collage-card,
+  [id^="Grid-Row2-"].grid--3-col-desktop > .grid__item .card-wrapper,
+  [id^="Grid-Row2-"].grid--3-col-desktop > .grid__item .card,
+  [id^="Grid-Row2-"].grid--3-col-desktop > .grid__item .media.ratio {
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: unset !important; /* height is now set by the grid item */
+  }
+
+  /* Ensure images / videos cover the full card area */
+  [id^="Grid-Row2-"].grid--3-col-desktop > .grid__item img,
+  [id^="Grid-Row2-"].grid--3-col-desktop > .grid__item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 }

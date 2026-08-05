@@ -1,0 +1,312 @@
+{{ 'collage.css' | asset_url | stylesheet_tag }}
+{{ 'editorial-card-component.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /*
+   * Row 2 – vintage triptych
+   * Scoped to this section so it wins over base.css flex/width overrides.
+   * Columns: left 254 / centre 336 / right 254 (total card width = 844)
+   * Gap: 53 px fixed (2 gaps between 3 cards).
+   * Cards align to the bottom baseline so the taller centre card rises upward.
+   */
+  @media screen and (min-width: 750px) {
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop {
+      display: grid !important;
+      grid-template-columns:
+        calc((100% - 106px) * 254 / 844)
+        calc((100% - 106px) * 336 / 844)
+        calc((100% - 106px) * 254 / 844) !important;
+      grid-template-rows: auto;
+      align-items: center !important;
+      gap: 53px !important;
+      /* suppress the base-theme margin-top inline style */
+      margin-top: var(--grid-desktop-vertical-spacing);
+    }
+
+    /* Reset widths that base.css sets via .grid--3-col-desktop .grid__item */
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop > .grid__item {
+      width: 100% !important;
+      max-width: 100% !important;
+      flex: none !important;
+      padding: 0 !important;
+    }
+
+    /* Side cards: 254 × 346 → aspect-ratio 127/173 */
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop > .grid__item:nth-child(1),
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop > .grid__item:nth-child(3) {
+      aspect-ratio: 127 / 173;
+      height: auto !important;
+      overflow: hidden;
+    }
+
+    /* Centre card: 336 × 458 → aspect-ratio 168/229 */
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop > .grid__item:nth-child(2) {
+      aspect-ratio: 168 / 229;
+      height: auto !important;
+      overflow: hidden;
+    }
+
+    /* Inner wrappers fill the grid item */
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop > .grid__item .vintage-card--height,
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop > .grid__item .vintage-card-full-height {
+      width: 100% !important;
+      height: 100% !important;
+      padding: 0 !important;
+      display: block !important;
+    }
+
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop > .grid__item .collage-card,
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop > .grid__item .card-wrapper,
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop > .grid__item .card {
+      width: 100% !important;
+      height: 100% !important;
+      aspect-ratio: unset !important;
+    }
+
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop > .grid__item .media.ratio {
+      width: 100% !important;
+      height: 100% !important;
+      aspect-ratio: unset !important;
+    }
+
+    /* Images and videos cover the card area */
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop > .grid__item img,
+    #Grid-Row2-{{ section.id }}.grid--3-col-desktop > .grid__item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  /* ── Mobile (≤ 749 px): single column, card fills width ── */
+  @media screen and (max-width: 749px) {
+    #Grid-Row2-{{ section.id }} {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: var(--grid-mobile-vertical-spacing) !important;
+      margin-top: var(--grid-mobile-vertical-spacing);
+    }
+
+    #Grid-Row2-{{ section.id }} > .grid__item {
+      width: 100% !important;
+      max-width: 100% !important;
+      aspect-ratio: 127 / 173; /* same portrait ratio for all cards */
+      height: auto !important;
+      overflow: hidden;
+    }
+
+    #Grid-Row2-{{ section.id }} > .grid__item .vintage-card--height,
+    #Grid-Row2-{{ section.id }} > .grid__item .vintage-card-full-height {
+      width: 100% !important;
+      height: 100% !important;
+      padding: 0 !important;
+      display: block !important;
+    }
+
+    #Grid-Row2-{{ section.id }} > .grid__item .collage-card,
+    #Grid-Row2-{{ section.id }} > .grid__item .card-wrapper,
+    #Grid-Row2-{{ section.id }} > .grid__item .card,
+    #Grid-Row2-{{ section.id }} > .grid__item .media.ratio {
+      width: 100% !important;
+      height: 100% !important;
+      aspect-ratio: unset !important;
+    }
+
+    #Grid-Row2-{{ section.id }} > .grid__item img,
+    #Grid-Row2-{{ section.id }} > .grid__item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  /* ── Tablet (750 px – 989 px): single column, slightly wider cards ── */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    #Grid-Row2-{{ section.id }} {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: var(--grid-desktop-vertical-spacing) !important;
+      margin-top: var(--grid-desktop-vertical-spacing);
+    }
+
+    #Grid-Row2-{{ section.id }} > .grid__item {
+      width: 100% !important;
+      max-width: 100% !important;
+      aspect-ratio: 127 / 173;
+      height: auto !important;
+      overflow: hidden;
+    }
+
+    #Grid-Row2-{{ section.id }} > .grid__item .vintage-card--height,
+    #Grid-Row2-{{ section.id }} > .grid__item .vintage-card-full-height {
+      width: 100% !important;
+      height: 100% !important;
+      padding: 0 !important;
+      display: block !important;
+    }
+
+    #Grid-Row2-{{ section.id }} > .grid__item .collage-card,
+    #Grid-Row2-{{ section.id }} > .grid__item .card-wrapper,
+    #Grid-Row2-{{ section.id }} > .grid__item .card,
+    #Grid-Row2-{{ section.id }} > .grid__item .media.ratio {
+      width: 100% !important;
+      height: 100% !important;
+      aspect-ratio: unset !important;
+    }
+
+    #Grid-Row2-{{ section.id }} > .grid__item img,
+    #Grid-Row2-{{ section.id }} > .grid__item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient isolate">
+  <div class="page-width section-{{ section.id }}-padding">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="collage-wrapper-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+  </div>
+  {%- render 'editorial-grid',
+    blocks: section.blocks,
+    layout_style: 'vintage',
+    desktop_layout: section.settings.desktop_layout,
+    mobile_layout: section.settings.mobile_layout,
+    card_styles: section.settings.card_styles
+  -%}
+</div>
+
+{% schema %}
+{
+  "name": "Vintage collage",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "t:sections.collage.settings.heading.default",
+      "label": "t:sections.collage.settings.heading.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "options": [
+        { "value": "collage", "label": "t:sections.collage.settings.mobile_layout.options__1.label" },
+        { "value": "column", "label": "t:sections.collage.settings.mobile_layout.options__2.label" }
+      ],
+      "default": "column",
+      "label": "t:sections.collage.settings.mobile_layout.label"
+    },
+    {
+      "type": "select",
+      "id": "card_styles",
+      "options": [
+        { "value": "none", "label": "t:sections.collage.settings.card_styles.options__1.label" },
+        { "value": "product-card-wrapper", "label": "t:sections.collage.settings.card_styles.options__2.label" }
+      ],
+      "default": "product-card-wrapper",
+      "label": "t:sections.collage.settings.card_styles.label"
+    },
+    { "type": "color_scheme", "id": "color_scheme", "default": "scheme-1", "label": "t:sections.all.colors.label" },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36,
+      "label": "t:sections.all.padding.padding_top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36,
+      "label": "t:sections.all.padding.padding_bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "t:sections.collage.blocks.product.name",
+      "settings": [
+        { "type": "product", "id": "product", "label": "t:sections.collage.blocks.product.settings.product.label" },
+        {
+          "type": "checkbox",
+          "id": "second_image",
+          "default": false,
+          "label": "t:sections.collage.blocks.product.settings.second_image.label"
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "t:sections.collage.blocks.collection.name",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "t:sections.collage.blocks.collection.settings.collection.label"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "t:sections.collage.blocks.image.name",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "t:sections.collage.blocks.image.settings.image.label" }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Magazine Editorial Video",
+      "settings": [{ "type": "video", "id": "editorial_video", "label": "Magazine Editorial Video" }]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Vintage Layout",
+      "blocks": [{ "type": "video" }, { "type": "image" }, { "type": "collection" }, { "type": "collection" }]
+    }
+  ]
+}
+{% endschema %}

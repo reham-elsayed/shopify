@@ -60,9 +60,10 @@
   --section-padding-y: var(--spacing-sections-desktop);
   --section-padding-y-mobile: var(--spacing-sections-mobile);
 
-  --container-sm: 900px;
-  --container-md: var(--page-width);
-  --container-lg: 1440px;
+  --container-sm: 90vw /* 900px */
+  --container-md: 95vw;    /* 1200px */
+  --container-lg: 100%;
+
 
   --gutter-desktop: var(--grid-desktop-horizontal-spacing);
   --gutter-mobile: var(--grid-mobile-horizontal-spacing);

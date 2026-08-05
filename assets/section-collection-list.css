@@ -3,8 +3,13 @@
 .collection-list {
   margin-top: 0;
   margin-bottom: 0;
+  position: relative;
 }
-
+.collection-list.card--collection {
+  margin-top: 0;
+  margin-bottom: 0;
+  max-height: 100vh;
+}
 .collection-list-title {
   margin: 0;
 }
@@ -59,19 +64,66 @@
 }
 
 .collection-list-view-all {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+  position: absolute;
+  top:0;
+  left: 0;
+}
+/* Container must have relative positioning and room to scroll */
+.sticky-button-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
+/* The invisible track that spans the top-to-bottom height */
+.view-all-sticky-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 20px; /* Adjust alignment (left, right, or centered) */
+  height: 100%;
+  pointer-events: none; /* Prevents blocking clicks on cards underneath */
+  z-index: 5;
+}
+
+/* The element that sticks and slides down as you scroll */
+.view-all-sticky-track .collection-list-view-all {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 40%; /* Offset from top of viewport when sticking */
+  pointer-events: auto; /* Re-enables clicking on the button itself */
+  transition: transform 0.2s ease-out;
+}
+
+/* Optional styling to make the floating button pop */
+.button--sticky {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+}
 @media screen and (min-width: 990px) {
   /* Forces Row 1 (first 2 items) to render at perfect 50% width allocations */
   .collection-list.grid--staggered-rows .grid__item.grid-item--half {
-    width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2) !important;
-    max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2) !important;
+    width: calc(50%) !important;
+    max-width: calc(50%) !important;
+    column-gap: 0;
+  }
+
+  /* Keep the two-card opening row within the viewport. */
+  .collection-list.grid--staggered-rows .grid__item.grid-item--half .card__inner {
+    height: min(75vw, 90svh);
+    aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+
+  .collection-list.grid--staggered-rows .grid__item.grid-item--half .card__media img {
+    height: 100%;
+    object-fit: cover;
   }
 
   /* Forces Row 2+ (items 3, 4, 5...) to render at perfect 33.33% width allocations */
   .collection-list.grid--staggered-rows .grid__item.grid-item--third {
-    width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3) !important;
-    max-width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3) !important;
+    width: calc(33.33% ) !important;
+    max-width: calc(33.33% ) !important;
   }
 }

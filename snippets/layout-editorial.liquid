@@ -1,0 +1,52 @@
+{% comment %}
+  Accepts:
+  - blocks: {Array} section.blocks (Required)
+  - desktop_layout: {String}
+  - card_styles: {String} section.settings.card_styles
+  - mobile_layout: {String}
+  - section_id: {String}
+  - gapless_grid: {Boolean}
+{% endcomment %}
+
+{%- liquid
+  assign skip_card_product_styles = false
+  assign wrapper_classes = 'editorial-grid editorial-grid--editorial grid-for-' | append: section_id
+
+  if gapless_grid
+    assign wrapper_classes = wrapper_classes | append: ' grid--gapless'
+  endif
+-%}
+
+<div
+  class="{{ wrapper_classes }}"
+  id="Grid-{{ section_id }}{% if mobile_layout == 'collage' %} editorial-grid--mobile-collage{% endif %}"
+>
+  {%- for block in blocks -%}
+    {%- liquid
+      assign item_classes = 'editorial-grid__item editorial-grid__item--' | append: block.type | append: ' editorial-grid__item--' | append: desktop_layout
+      assign large_block = false
+      if forloop.first
+        assign large_block = true
+      endif
+    -%}
+    {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+    <div
+      class="{{ item_classes }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      {{ block.shopify_attributes }}
+      {% if settings.animations_reveal_on_scroll %}
+        data-cascade
+        style="--animation-order: {{ forloop.index }};"
+      {% endif %}
+    >
+      {% render 'editorial-card', 
+        block: block, 
+        placeholder_image_index: placeholder_image_index, 
+        card_styles: card_styles, 
+        layout_style: 'editorial', 
+        mobile_layout: mobile_layout, 
+        skip_card_product_styles: skip_card_product_styles,
+        large_block: large_block
+      %}
+    </div>
+  {%- endfor -%}
+</div>

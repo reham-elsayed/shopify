@@ -4,28 +4,30 @@
     "Default": {
       "logo_width": 90,
       "color_schemes": {
-        "scheme-1": {
-          "settings": {
-            "background": "#FFFFFF",
-            "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
-            "button_label": "#FFFFFF",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
-          }
-        },
-        "scheme-2": {
-          "settings": {
-            "background": "#F3F3F3",
-            "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
-            "button_label": "#F3F3F3",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
-          }
-        },
+      
+  "scheme-1": {
+  
+  "background": "#FAF6F0",
+  "background_gradient": "",
+  "text": "#1C1917",
+  "button": "#C84B31",
+  "button_label": "#FFFFFF",
+  "secondary_button_label": "#C84B31",
+  "shadow": "#8B2612"
+
+  },
+  "scheme-2": {
+
+  "background": "#0F1715",
+  "background_gradient": "",
+  "text": "#ECFDF5",
+  "button": "#10B981",
+  "button_label": "#0F1715",
+  "secondary_button_label": "#10B981",
+  "shadow": "#047857"
+
+  }
+,
         "scheme-3": {
           "settings": {
             "background": "#242833",
@@ -64,11 +66,10 @@
       "heading_scale": 100,
       "type_body_font": "assistant_n4",
       "body_scale": 100,
-      "page_width": 1200,
       "spacing_sections": 0,
       "spacing_grid_horizontal": 8,
       "spacing_grid_vertical": 8,
-      "buttons_border_thickness": 1,
+      "buttons_border_thickness": 0,
       "buttons_border_opacity": 100,
       "buttons_radius": 0,
       "buttons_shadow_opacity": 0,
@@ -93,7 +94,7 @@
       "card_image_padding": 0,
       "card_text_alignment": "left",
       "card_color_scheme": "scheme-2",
-      "card_border_thickness": 0,
+      "card_border_thickness": 0.5,
       "card_border_opacity": 10,
       "card_corner_radius": 0,
       "card_shadow_opacity": 0,
@@ -104,7 +105,7 @@
       "collection_card_image_padding": 0,
       "collection_card_text_alignment": "left",
       "collection_card_color_scheme": "scheme-2",
-      "collection_card_border_thickness": 0,
+      "collection_card_border_thickness": 0.5,
       "collection_card_border_opacity": 10,
       "collection_card_corner_radius": 0,
       "collection_card_shadow_opacity": 0,

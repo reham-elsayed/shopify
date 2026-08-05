@@ -19,16 +19,15 @@
   position: relative;
 }
 
-.shop-the-look__heading {
-  text-align: center;
-  margin-bottom: 0.5rem;
+.shop-the-look-list {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.shop-the-look__subheading {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: rgba(0, 0, 0, 0.6);
+.shop-the-look-title {
+  margin: 0;
 }
+
 
 /* ── Hero image shared ────────────────────────────────────── */
 .shop-the-look__hero-image {
@@ -73,22 +72,6 @@
     /* NO overflow:hidden — required for sticky to propagate */
   }
 
-  /* ─────────────────────────────────────────────────────────
-     Subtle column dividers (pseudo-elements on canvas)
-     ───────────────────────────────────────────────────────── */
-  .shop-the-look__canvas--desktop::before,
-  .shop-the-look__canvas--desktop::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 1px;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.07);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .shop-the-look__canvas--desktop::before { left: 29.85%; }
-  .shop-the-look__canvas--desktop::after  { right: 29.85%; }
 
   /* ─────────────────────────────────────────────────────────
      COLUMN WRAPPERS
@@ -117,7 +100,7 @@
      ───────────────────────────────────────────────────────── */
   .shop-the-look__hero {
     position: sticky;
-    top: 50vh;
+    top: 20vh;
     /* transform: translateY(-50%); */
     width: 100%;
     overflow: hidden;
@@ -297,7 +280,7 @@
   /* ── Hero: full-width portrait ── */
   .shop-the-look__hero--mobile {
     width: 100%;
-    aspect-ratio: 3 / 4;
+   
     overflow: hidden;
     border-radius: 4px;
   }

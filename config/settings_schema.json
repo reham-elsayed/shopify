@@ -37,67 +37,67 @@
     "name": "t:settings_schema.colors.name",
     "settings": [
       {
-        "type": "color_scheme_group",
-        "id": "color_schemes",
-        "definition": [
-          {
-            "type": "color",
-            "id": "background",
-            "label": "t:settings_schema.colors.settings.background.label",
-            "default": "#FFFFFF"
-          },
-          {
-            "type": "color_background",
-            "id": "background_gradient",
-            "label": "t:settings_schema.colors.settings.background_gradient.label",
-            "info": "t:settings_schema.colors.settings.background_gradient.info"
-          },
-          {
-            "type": "color",
-            "id": "text",
-            "label": "t:settings_schema.colors.settings.text.label",
-            "default": "#121212"
-          },
-          {
-            "type": "color",
-            "id": "button",
-            "label": "t:settings_schema.colors.settings.button_background.label",
-            "default": "#121212"
-          },
-          {
-            "type": "color",
-            "id": "button_label",
-            "label": "t:settings_schema.colors.settings.button_label.label",
-            "default": "#FFFFFF"
-          },
-          {
-            "type": "color",
-            "id": "secondary_button_label",
-            "label": "t:settings_schema.colors.settings.secondary_button_label.label",
-            "default": "#121212"
-          },
-          {
-            "type": "color",
-            "id": "shadow",
-            "label": "t:settings_schema.colors.settings.shadow.label",
-            "default": "#121212"
-          }
-        ],
-        "role": {
-          "text": "text",
-          "background": {
-            "solid": "background",
-            "gradient": "background_gradient"
-          },
-          "links": "secondary_button_label",
-          "icons": "text",
-          "primary_button": "button",
-          "on_primary_button": "button_label",
-          "primary_button_border": "button",
-          "secondary_button": "background",
-          "on_secondary_button": "secondary_button_label",
-          "secondary_button_border": "secondary_button_label"
-        }
+  "type": "color_scheme_group",
+  "id": "color_schemes",
+  "definition": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "t:settings_schema.colors.settings.background.label",
+      "default": "#FAF6F0"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "t:settings_schema.colors.settings.background_gradient.label",
+      "info": "t:settings_schema.colors.settings.background_gradient.info"
+    },
+    {
+      "type": "color",
+      "id": "text",
+      "label": "t:settings_schema.colors.settings.text.label",
+      "default": "#1C1917"
+    },
+    {
+      "type": "color",
+      "id": "button",
+      "label": "t:settings_schema.colors.settings.button_background.label",
+      "default": "#C84B31"
+    },
+    {
+      "type": "color",
+      "id": "button_label",
+      "label": "t:settings_schema.colors.settings.button_label.label",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_label",
+      "label": "t:settings_schema.colors.settings.secondary_button_label.label",
+      "default": "#C84B31"
+    },
+    {
+      "type": "color",
+      "id": "shadow",
+      "label": "t:settings_schema.colors.settings.shadow.label",
+      "default": "#8B2612"
+    }
+  ],
+  "role": {
+    "text": "text",
+    "background": {
+      "solid": "background",
+      "gradient": "background_gradient"
+    },
+    "links": "secondary_button_label",
+    "icons": "text",
+    "primary_button": "button",
+    "on_primary_button": "button_label",
+    "primary_button_border": "button",
+    "secondary_button": "background",
+    "on_secondary_button": "secondary_button_label",
+    "secondary_button_border": "secondary_button_label"
+  }
       }
     ]
   },
@@ -149,16 +149,7 @@
   {
     "name": "t:settings_schema.layout.name",
     "settings": [
-      {
-        "type": "range",
-        "id": "page_width",
-        "min": 1000,
-        "max": 1600,
-        "step": 100,
-        "default": 1400,
-        "unit": "px",
-        "label": "t:settings_schema.layout.settings.page_width.label"
-      },
+     
       {
         "type": "range",
         "id": "spacing_sections",
@@ -250,7 +241,7 @@
         "step": 1,
         "unit": "px",
         "label": "t:settings_schema.global.settings.thickness.label",
-        "default": 1
+        "default": 0
       },
       {
         "type": "range",
@@ -551,11 +542,11 @@
         "type": "range",
         "id": "card_border_thickness",
         "min": 0,
-        "max": 24,
-        "step": 1,
+        "max": 5,
+        "step": 0.1,
         "unit": "px",
         "label": "t:settings_schema.global.settings.thickness.label",
-        "default": 0
+        "default": 0.5
       },
       {
         "type": "range",
@@ -565,7 +556,7 @@
         "step": 5,
         "unit": "%",
         "label": "t:settings_schema.global.settings.opacity.label",
-        "default": 0
+        "default": 10
       },
       {
         "type": "range",
@@ -629,7 +620,7 @@
         "type": "color",
         "id": "card_media_background",
         "label": "t:settings_schema.cards.settings.media_background.label",
-        "default": "#f5f5f5"
+        "default": "#ECE8DF"
       },
       // keep
       {
@@ -739,7 +730,7 @@
         "type": "color",
         "id": "card_quick_add_background",
         "label": "t:settings_schema.cards.settings.quick_add_glass_tint.label",
-        "default": "#ffffff"
+        "default": "#ECE8DF"
       },
       {
         "type": "color",
@@ -751,7 +742,7 @@
         "type": "color",
         "id": "card_quick_add_hover_background",
         "label": "t:settings_schema.cards.settings.quick_add_hover_glass_tint.label",
-        "default": "#ffffff"
+        "default": "#C6BFAE"
       },
       {
         "type": "color",
@@ -994,7 +985,7 @@
         "id": "collection_card_border_thickness",
         "min": 0,
         "max": 24,
-        "step": 1,
+        "step": 2,
         "unit": "px",
         "label": "t:settings_schema.global.settings.thickness.label",
         "default": 0

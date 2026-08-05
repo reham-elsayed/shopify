@@ -1,0 +1,11 @@
+<article class="editorial-testimonial__card editorial-testimonial__card--before-after" data-testimonial-card data-testimonial-category="{{ block.settings.category | default: 'results' }}">
+  <div class="editorial-testimonial__comparison">
+    <figure>{% if block.settings.before_image != blank %}{{ block.settings.before_image | image_url: width: 800 | image_tag: widths: '320, 480, 640, 800', sizes: '(min-width: 990px) 15vw, 41vw', alt: block.settings.before_image.alt | default: 'Before' | escape }}{% else %}{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}{% endif %}<figcaption>Before</figcaption></figure>
+    <figure>{% if block.settings.after_image != blank %}{{ block.settings.after_image | image_url: width: 800 | image_tag: widths: '320, 480, 640, 800', sizes: '(min-width: 990px) 15vw, 41vw', alt: block.settings.after_image.alt | default: 'After' | escape }}{% else %}{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}{% endif %}<figcaption>After</figcaption></figure>
+  </div>
+  <div class="editorial-testimonial__card-body">
+    <span class="editorial-testimonial__eyebrow">Real results</span>
+    <blockquote class="editorial-testimonial__quote">{{ block.settings.quote | escape }}</blockquote>
+    <p class="editorial-testimonial__author-line">{{ block.settings.author | escape }}{% if block.settings.verified %} <span class="editorial-testimonial__verified">✓ Verified purchaser</span>{% endif %}</p>
+  </div>
+</article>

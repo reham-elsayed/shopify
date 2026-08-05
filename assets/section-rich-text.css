@@ -1,3 +1,5 @@
+
+
 .rich-text {
   z-index: 1;
 }
@@ -11,6 +13,7 @@
 .rich-text:not(.rich-text--full-width) .rich-text__wrapper {
   margin: auto;
   width: calc(100% - 8rem / var(--font-body-scale));
+ 
 }
 
 .rich-text__blocks {
@@ -83,4 +86,52 @@
 
 .rich-text__blocks.right .rich-text__buttons {
   justify-content: flex-end;
+  background-color: var(--color-button);
+}
+
+
+/* ==========================================================================
+   DUAL-LAYER CLIP-PATH CUTOUT EFFECT
+   ========================================================================== */
+
+/* 1. Main Container Setup */
+.isolate.background-color {
+  position: relative;
+  background-color: var(--outer-bg); /* Canvas color */
+  overflow: hidden;
+}
+
+/* 2. Base Layer (Outside text - Dark) */
+.rich-text__wrapper--base .rich-text__heading,
+.rich-text__wrapper--base .rich-text__caption,
+.rich-text__wrapper--base .rich-text__text {
+  color: var(--text-outer) !important; /* Color outside the box */
+}
+
+/* 3. Overlay Layer (Inverted Box + White Text) */
+.rich-text__wrapper--overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* Central Box styling */
+  background-color: var(--center-box); /* Color of the center box (e.g. #0F1110 or #0000FF) */
+  
+  /* Clip this overlay layer to a centered rectangle */
+  /* Format: inset(top right bottom left) */
+clip-path: inset(30% 0% 25% 0%);  
+  pointer-events: none; /* Allows clicks to pass through to buttons below */
+  z-index: 2;
+}
+
+/* 4. Overlay Text (Inside text - White) */
+.rich-text__wrapper--overlay .rich-text__heading,
+.rich-text__wrapper--overlay .rich-text__caption,
+.rich-text__wrapper--overlay .rich-text__text {
+  color: var(--text-inner) !important; /* Color inside the box */
+}
+.rich-text__wrapper--overlay .rich-text__buttons {
+  background-color: var(--center-box) !important; /* Match the overlay background */
 }

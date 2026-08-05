@@ -315,6 +315,9 @@
         "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Log in</a> to check out faster."
       }
     },
+    "editorial": {
+      "video_placeholder": "Add a video to this block"
+    },
     "footer": {
       "payment": "Payment methods"
     },

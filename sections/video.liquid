@@ -1,10 +1,21 @@
 {{ 'video-section.css' | asset_url | stylesheet_tag }}
 {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
-
 {%- style -%}
+  /* 1. Force the root section wrapper to follow the grid cell layout boundaries */
+  #shopify-section-{{ section.id }} {
+    display: block;
+    width: 100% !important;
+  }
+
+  /* 2. Style the section container itself */
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    width: 100% !important;
+    max-width: {{ section.settings.max_width }}% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
   }
 
   @media screen and (min-width: 750px) {
@@ -13,8 +24,39 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-{%- endstyle -%}
 
+  /* 3. Force the video media card to fill 100% of the available width inside that grid slot */
+  .section-{{ section.id }}-padding .video-section__media.deferred-media {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    position: relative !important;
+
+    {%- if section.settings.desktop_height != 'adapt' -%}
+      height: {{ section.settings.desktop_height }} !important;
+      min-height: {{ section.settings.desktop_height }} !important;
+      max-height: {{ section.settings.desktop_height }} !important;
+      padding-bottom: 0 !important;
+    {%- else -%}
+      height: 100% !important;
+      flex-grow: 1 !important;
+    {%- endif -%}
+  }
+
+  /* 4. Crucial: Force inner images, players, and buttons to obey the container layout bounds */
+  .section-{{ section.id }}-padding .video-section__media .video-section__poster,
+  .section-{{ section.id }}-padding .video-section__media .deferred-media__poster,
+  .section-{{ section.id }}-padding .video-section__media img,
+  .section-{{ section.id }}-padding .video-section__media video,
+  .section-{{ section.id }}-padding .video-section__media iframe {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+{%- endstyle -%}
 {%- liquid
   assign video_id = section.settings.video.id | default: section.settings.video_url.id
   assign video_alt = section.settings.video.alt | default: section.settings.description
@@ -244,6 +286,28 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "select",
+      "id": "desktop_height",
+      "label": "Desktop Height Style",
+      "default": "adapt",
+      "options": [
+        { "value": "adapt", "label": "Adapt to Image/Video Ratio" },
+        { "value": "50vh", "label": "Short Banner (50vh)" },
+        { "value": "80vh", "label": "Hero Viewport (80vh)" },
+        { "value": "400px", "label": "Fixed Grid Size (400px)" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Section Maximum Width",
+      "default": 100
     }
   ],
   "presets": [

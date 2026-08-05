@@ -27,7 +27,8 @@ a.button,
 input[type="submit"],
 input[type="button"],
 input[type="reset"] {
-  transition: all var(--motion-fast) var(--ease-out-quad);
+  transition: all var(--motion-slow) var(--ease-out-quad);
+ 
 }
 
 button:hover,
@@ -37,11 +38,18 @@ a.button:hover,
 input[type="submit"]:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover {
-  transform: translateY(var(--card-lift));
+ box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.15);
+  filter: brightness(0.95);
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
+  letter-spacing: 0.15rem; /* Slightly widens the text space */
+  background-color: rgba(var(--color-button-hover), 0.9); 
+  transition: letter-spacing 0.3s ease, background-color 0.3s ease;
+ 
+  outline: none !important;
 }
 
 /* Card elevation on hover - subtle */
-.product-card-wrapper,
+/* .product-card-wrapper,
 .card-wrapper,
 .card {
   transition: box-shadow var(--motion-medium) var(--ease-out-quad);
@@ -51,7 +59,7 @@ input[type="reset"]:hover {
 .card-wrapper:hover,
 .card:hover {
   box-shadow: var(--shadow-medium);
-}
+} */
 
 /* Form field focus effects */
 input,
@@ -66,8 +74,8 @@ textarea:focus,
 select:focus {
   outline: none;
   border-color: rgba(var(--color-foreground-rgb), 0.5);
-  box-shadow: 0 0 0 2px rgba(var(--color-background-rgb), 1),
-              0 0 0 4px rgba(var(--color-foreground-rgb), 0.25);
+  /* box-shadow: 0 0 0 2px rgba(var(--color-background-rgb), 1),
+              0 0 0 4px rgba(var(--color-foreground-rgb), 0.25); */
 }
 
 /* Menu and drawer transitions */

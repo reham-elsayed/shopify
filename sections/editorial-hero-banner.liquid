@@ -1,0 +1,526 @@
+{{ 'editorial-hero-banner.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'editorial-hero-banner.js' | asset_url }}" defer="defer"></script>
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'component-slider.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign top_slide_count = 0
+  assign bottom_slide_count = 0
+  assign top_left_block_image = blank
+  assign top_left_block_product = blank
+  assign top_right_small_block_image = blank
+  assign top_right_small_block_product = blank
+  assign top_right_block_image = blank
+  assign top_right_block_product = blank
+  assign bottom_left_block_image = blank
+  assign bottom_left_block_product = blank
+  assign middle_right_block_image = blank
+  assign middle_right_block_product = blank
+  assign bottom_right_block_image = blank
+  assign bottom_right_block_product = blank
+  for block in section.blocks
+    if block.type == 'top_slide'
+      assign top_slide_count = top_slide_count | plus: 1
+    elsif block.type == 'bottom_slide'
+      assign bottom_slide_count = bottom_slide_count | plus: 1
+    elsif block.type == 'top_left_image'
+      assign top_left_block_product = block.settings.product
+      assign top_left_block_image = block.settings.image | default: top_left_block_product.featured_image
+    elsif block.type == 'top_right_small_image'
+      assign top_right_small_block_product = block.settings.product
+      assign top_right_small_block_image = block.settings.image | default: top_right_small_block_product.featured_image
+    elsif block.type == 'top_right_image'
+      assign top_right_block_product = block.settings.product
+      assign top_right_block_image = block.settings.image | default: top_right_block_product.featured_image
+    elsif block.type == 'bottom_left_image'
+      assign bottom_left_block_product = block.settings.product
+      assign bottom_left_block_image = block.settings.image | default: bottom_left_block_product.featured_image
+    elsif block.type == 'middle_right_image'
+      assign middle_right_block_product = block.settings.product
+      assign middle_right_block_image = block.settings.image | default: middle_right_block_product.featured_image
+    elsif block.type == 'bottom_right_image'
+      assign bottom_right_block_product = block.settings.product
+      assign bottom_right_block_image = block.settings.image | default: bottom_right_block_product.featured_image
+    endif
+  endfor
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="editorial-hero color-{{ section.settings.color_scheme }} gradient hero-section">
+  <div class="page-width section-{{ section.id }}-padding">
+    <div class="editorial-hero__grid">
+      <div class="editorial-hero__wordmark rte">{{ section.settings.wordmark }}</div>
+
+      <div class="editorial-hero__image editorial-hero__image--top-left">
+        {% assign top_left_product = top_left_block_product | default: section.settings.top_left_product %}
+        {% assign top_left_image = top_left_block_image
+          | default: section.settings.top_left_image
+          | default: top_left_product.featured_image
+        %}
+        {% if top_left_product != blank -%}
+          <a href="{{ top_left_product.url }}" class="editorial-hero__link-wrapper">
+        {%- endif %}
+        {% if top_left_image != blank %}
+          {{
+            top_left_image
+            | image_url: width: 800
+            | image_tag: widths: '240, 400, 600, 800', sizes: '(min-width: 990px) 12vw, 34vw', loading: 'lazy'
+          }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+        {% if top_left_product != blank %}
+          <div class="editorial-hero__caption">
+            <span class="editorial-hero__caption-title">{{ top_left_product.title }}</span>
+            <span class="editorial-hero__caption-cta">Shop</span>
+          </div>
+          </a>
+        {%- endif %}
+      </div>
+      <div class="editorial-hero__slider--top">
+        <slider-component
+          class="slider-mobile-gutter "
+          data-autoplay="{{ section.settings.auto_rotate }}"
+          data-interval="{{ section.settings.slide_speed | times: 1000 }}"
+        >
+          <ul class="slider slider--everywhere" aria-live="polite" id="Slider-{{ section.id }}" role="list">
+            {% assign current_top_slide = 0 %}
+            {% for block in section.blocks %}
+              {% if block.type == 'top_slide' %}
+                {% assign current_top_slide = current_top_slide | plus: 1 %}
+                <li
+                  class="slider__slide"
+                  {{ block.shopify_attributes }}
+                >
+                  <div class="editorial-hero__slide  editorial-hero__media-container ">
+                    {% assign slide_product = block.settings.product %}
+                    {% assign slide_image = block.settings.image | default: slide_product.featured_image %}
+                    {% if slide_product != blank -%}
+                      <a href="{{ slide_product.url }}" class="editorial-hero__link-wrapper">
+                    {%- endif %}
+                    {% if slide_image != blank %}
+                      {{
+                        slide_image
+                        | image_url: width: 1200
+                        | image_tag:
+                          widths: '400, 600, 800, 1200',
+                          sizes: '(min-width: 990px) 19vw, 54vw',
+                          loading: 'lazy'
+                      }}
+                    {% else %}
+                      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+                    {% if slide_product != blank %}
+                      <div class="editorial-hero__caption">
+                        <span class="editorial-hero__caption-title">{{ slide_product.title }}</span>
+                        <span class="editorial-hero__caption-cta">Shop</span>
+                      </div>
+                      </a>
+                    {%- endif %}
+                  </div>
+                </li>
+              {% endif %}
+            {% endfor %}
+            {% if top_slide_count == 0 %}
+              <div class="editorial-hero__slide is-active">
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+            {% endif %}
+          </ul>
+          <div class="editorial-hero__slider-controls slider-buttons no-js-hidden">
+            <button
+              class="slider-button slider-button--prev"
+              name="previous"
+              type="button"
+              data-slider-previous
+              aria-label="Previous image"
+            >
+              ‹
+            </button>
+            <button
+              class="editorial-hero__slider-button editorial-hero__slider-button--next slider-button slider-button--next"
+              name="next"
+              type="button"
+              data-slider-next
+              aria-label="Next image"
+            >
+              ›
+            </button>
+          </div>
+        </slider-component>
+      </div>
+      <div class="editorial-hero__image editorial-hero__image--top-right-small">
+        {% assign top_right_small_product = top_right_small_block_product
+          | default: section.settings.top_right_small_product
+        %}
+        {% assign top_right_small_image = top_right_small_block_image
+          | default: section.settings.top_right_small_image
+          | default: top_right_small_product.featured_image
+        %}
+        {% if top_right_small_product != blank -%}
+          <a href="{{ top_right_small_product.url }}" class="editorial-hero__link-wrapper">
+        {%- endif %}
+        {% if top_right_small_image != blank %}
+          {{
+            top_right_small_image
+            | image_url: width: 600
+            | image_tag: widths: '180, 300, 450, 600', sizes: '(min-width: 990px) 7vw, 24vw', loading: 'lazy'
+          }}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+        {% if top_right_small_product != blank %}
+          <div class="editorial-hero__caption editorial-hero__caption--small">
+            <span class="editorial-hero__caption-title">{{ top_right_small_product.title }}</span>
+            <span class="editorial-hero__caption-cta">Shop</span>
+          </div>
+          </a>
+        {%- endif %}
+      </div>
+
+      <div class="editorial-hero__brand rte">{{ section.settings.brand_text }}</div>
+
+      <div class="editorial-hero__image editorial-hero__image--top-right">
+        {% assign top_right_product = top_right_block_product | default: section.settings.top_right_product %}
+        {% assign top_right_image = top_right_block_image
+          | default: section.settings.top_right_image
+          | default: top_right_product.featured_image
+        %}
+        {% if top_right_product != blank -%}
+          <a href="{{ top_right_product.url }}" class="editorial-hero__link-wrapper">
+        {%- endif %}
+        {% if top_right_image != blank %}
+          {{
+            top_right_image
+            | image_url: width: 600
+            | image_tag: widths: '180, 300, 450, 600', sizes: '(min-width: 990px) 8vw, 27vw', loading: 'lazy'
+          }}
+        {% else %}
+          {{ 'product-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+        {% if top_right_product != blank %}
+          <div class="editorial-hero__caption">
+            <span class="editorial-hero__caption-title">{{ top_right_product.title }}</span>
+            <span class="editorial-hero__caption-cta">Shop</span>
+          </div>
+          </a>
+        {%- endif %}
+      </div>
+
+      <div class="editorial-hero__image editorial-hero__image--bottom-left  editorial-hero__media-container">
+        {% assign bottom_left_product = bottom_left_block_product | default: section.settings.bottom_left_product %}
+        {% assign bottom_left_image = bottom_left_block_image
+          | default: section.settings.bottom_left_image
+          | default: bottom_left_product.featured_image
+        %}
+        {% if bottom_left_product != blank -%}
+          <a href="{{ bottom_left_product.url }}" class="editorial-hero__link-wrapper">
+        {%- endif %}
+        {% if bottom_left_image != blank %}
+          {{
+            bottom_left_image
+            | image_url: width: 800
+            | image_tag: widths: '240, 400, 600, 800', sizes: '(min-width: 990px) 12vw, 36vw', loading: 'lazy'
+          }}
+        {% else %}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+        {% if bottom_left_product != blank %}
+          <div class="editorial-hero__caption">
+            <span class="editorial-hero__caption-title">{{ bottom_left_product.title }}</span>
+            <span class="editorial-hero__caption-cta">Shop</span>
+          </div>
+          </a>
+        {%- endif %}
+      </div>
+
+      <div class="editorial-hero__content rte">{{ section.settings.content }}</div>
+
+      <editorial-hero-slider
+        class="editorial-hero__slider editorial-hero__slider--bottom"
+        data-autoplay="{{ section.settings.auto_rotate }}"
+        data-interval="{{ section.settings.slide_speed | times: 1000 }}"
+      >
+        <div class="editorial-hero__slides" aria-live="polite">
+          {% assign current_bottom_slide = 0 %}
+          {% for block in section.blocks %}
+            {% if block.type == 'bottom_slide' %}
+              {% assign current_bottom_slide = current_bottom_slide | plus: 1 %}
+              <div
+                class="editorial-hero__slide editorial-hero__media-container {% if current_bottom_slide == 1 %} is-active{% endif %}   "
+                {{ block.shopify_attributes }}
+              >
+                {% assign slide_product = block.settings.product %}
+                {% assign slide_image = block.settings.image | default: slide_product.featured_image %}
+                {% if slide_product != blank -%}
+                  <a href="{{ slide_product.url }}" class="editorial-hero__link-wrapper">
+                {%- endif %}
+                {% if slide_image != blank %}
+                  {{
+                    slide_image
+                    | image_url: width: 1200
+                    | image_tag: widths: '400, 600, 800, 1200', sizes: '(min-width: 990px) 19vw, 54vw', loading: 'lazy'
+                  }}
+                {% else %}
+                  {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+                {% if slide_product != blank %}
+                  <div class="editorial-hero__caption">
+                    <span class="editorial-hero__caption-title">{{ slide_product.title }}</span>
+                    <span class="editorial-hero__caption-cta">Shop</span>
+                  </div>
+                  </a>
+                {%- endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+          {% if bottom_slide_count == 0 %}
+            <div class="editorial-hero__slide is-active">
+              {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="editorial-hero__slider-controls">
+          <button class="editorial-hero__slider-button" type="button" data-slider-previous aria-label="Previous image">
+            ‹
+          </button>
+          <button
+            class="editorial-hero__slider-button editorial-hero__slider-button--next"
+            type="button"
+            data-slider-next
+            aria-label="Next image"
+          >
+            ›
+          </button>
+        </div>
+      </editorial-hero-slider>
+
+      <div class="editorial-hero__image editorial-hero__image--middle-right">
+        {% assign middle_right_product = middle_right_block_product | default: section.settings.middle_right_product %}
+        {% assign middle_right_image = middle_right_block_image
+          | default: section.settings.middle_right_image
+          | default: middle_right_product.featured_image
+        %}
+        {% if middle_right_product != blank -%}
+          <a href="{{ middle_right_product.url }}" class="editorial-hero__link-wrapper">
+        {%- endif %}
+        {% if middle_right_image != blank %}
+          {{
+            middle_right_image
+            | image_url: width: 800
+            | image_tag: widths: '240, 400, 600, 800', sizes: '(min-width: 990px) 11vw, 34vw', loading: 'lazy'
+          }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+        {% if middle_right_product != blank %}
+          <div class="editorial-hero__caption">
+            <span class="editorial-hero__caption-title">{{ middle_right_product.title }}</span>
+            <span class="editorial-hero__caption-cta">Shop</span>
+          </div>
+          </a>
+        {%- endif %}
+      </div>
+
+      <div class="editorial-hero__image editorial-hero__image--bottom-right">
+        {% assign bottom_right_product = bottom_right_block_product | default: section.settings.bottom_right_product %}
+        {% assign bottom_right_image = bottom_right_block_image
+          | default: section.settings.bottom_right_image
+          | default: bottom_right_product.featured_image
+        %}
+        {% if bottom_right_product != blank -%}
+          <a href="{{ bottom_right_product.url }}" class="editorial-hero__link-wrapper">
+        {%- endif %}
+        {% if bottom_right_image != blank %}
+          {{
+            bottom_right_image
+            | image_url: width: 800
+            | image_tag: widths: '240, 400, 600, 800', sizes: '(min-width: 990px) 13vw, 40vw', loading: 'lazy'
+          }}
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+        {% if bottom_right_product != blank %}
+          <div class="editorial-hero__caption">
+            <span class="editorial-hero__caption-title">{{ bottom_right_product.title }}</span>
+            <span class="editorial-hero__caption-cta">Shop</span>
+          </div>
+          </a>
+        {%- endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Editorial hero banner",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "richtext", "id": "wordmark", "label": "Left wordmark", "default": "<p>idea</p>" },
+    { "type": "richtext", "id": "content", "label": "Editorial text", "default": "<p>Add a<br>subheading</p>" },
+    {
+      "type": "richtext",
+      "id": "brand_text",
+      "label": "Right brand text",
+      "default": "<p>cold,<br>smooth<br>&amp; tasty.</p><p>ANGELO BREWING</p>"
+    },
+    { "type": "image_picker", "id": "top_left_image", "label": "Top left image" },
+    { "type": "product", "id": "top_left_product", "label": "Top left product link" },
+    { "type": "image_picker", "id": "top_right_small_image", "label": "Top right small image" },
+    { "type": "product", "id": "top_right_small_product", "label": "Top right small product link" },
+    { "type": "image_picker", "id": "top_right_image", "label": "Top right image" },
+    { "type": "product", "id": "top_right_product", "label": "Top right product link" },
+    { "type": "image_picker", "id": "bottom_left_image", "label": "Bottom left image" },
+    { "type": "product", "id": "bottom_left_product", "label": "Bottom left product link" },
+    { "type": "image_picker", "id": "middle_right_image", "label": "Middle right image" },
+    { "type": "product", "id": "middle_right_product", "label": "Middle right product link" },
+    { "type": "image_picker", "id": "bottom_right_image", "label": "Bottom right image" },
+    { "type": "product", "id": "bottom_right_product", "label": "Bottom right product link" },
+    { "type": "checkbox", "id": "auto_rotate", "label": "Auto-rotate center sliders", "default": true },
+    {
+      "type": "range",
+      "id": "slide_speed",
+      "label": "Slide duration",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "top_slide",
+      "name": "Top center slide",
+      "limit": 5,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "product", "id": "product", "label": "Product link" }
+      ]
+    },
+    {
+      "type": "bottom_slide",
+      "name": "Bottom center slide",
+      "limit": 5,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "product", "id": "product", "label": "Product link" }
+      ]
+    },
+    {
+      "type": "top_left_image",
+      "name": "Top left image",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "product", "id": "product", "label": "Product link" }
+      ]
+    },
+    {
+      "type": "bottom_left_image",
+      "name": "Bottom left image",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "product", "id": "product", "label": "Product link" }
+      ]
+    },
+    {
+      "type": "top_right_small_image",
+      "name": "Top right small image",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "product", "id": "product", "label": "Product link" }
+      ]
+    },
+    {
+      "type": "top_right_image",
+      "name": "Top right image",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "product", "id": "product", "label": "Product link" }
+      ]
+    },
+    {
+      "type": "middle_right_image",
+      "name": "Middle right image",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "product", "id": "product", "label": "Product link" }
+      ]
+    },
+    {
+      "type": "bottom_right_image",
+      "name": "Bottom right image",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "product", "id": "product", "label": "Product link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial hero banner",
+      "blocks": [
+        { "type": "top_slide" },
+        { "type": "top_slide" },
+        { "type": "top_slide" },
+        { "type": "top_slide" },
+        { "type": "top_slide" },
+        { "type": "bottom_slide" },
+        { "type": "bottom_slide" },
+        { "type": "bottom_slide" },
+        { "type": "bottom_slide" },
+        { "type": "bottom_slide" },
+        { "type": "top_left_image" },
+        { "type": "bottom_left_image" },
+        { "type": "top_right_small_image" },
+        { "type": "top_right_image" },
+        { "type": "middle_right_image" },
+        { "type": "bottom_right_image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

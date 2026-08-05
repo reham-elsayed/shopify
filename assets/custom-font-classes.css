@@ -1,0 +1,63 @@
+/* Font-face definitions */
+@font-face {
+  font-family: 'Canela';
+  src: url('{{ "Canela-Black-Trial.woff" | asset_url }}') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Canela';
+  src: url('{{ "Canela-Bold-Trial.woff" | asset_url }}') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('{{ "CormorantGaramond-Regular.ttf" | asset_url }}') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('{{ "HelveticaNeueBold.otf" | asset_url }}') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('{{ "HelveticaNeueMedium.otf" | asset_url }}') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+/* Font utility classes */
+.primary-logo {
+  font-family: 'Canela', sans-serif;
+  font-weight: 900;
+}
+.big-display {
+  font-family: 'Canela', sans-serif;
+  font-weight: 700;
+  font-size: var(--text-hero-size);
+  line-height: var(--text-hero-line-height);
+}
+.headlines {
+  font-family: 'Canela', sans-serif;
+  font-weight: 600;
+}
+.subtitles {
+  font-family: 'Canela', sans-serif;
+  font-weight: 400;
+}
+.editorial {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+}
+.labels, .captions, .navigation {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+}

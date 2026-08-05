@@ -1,0 +1,16 @@
+<article class="editorial-testimonial__card editorial-testimonial__card--product" data-testimonial-card data-testimonial-category="{{ block.settings.category | default: 'products' }}">
+  {% if block.settings.image != blank %}
+    <div class="editorial-testimonial__media">{{ block.settings.image | image_url: width: 1000 | image_tag: widths: '320, 480, 640, 800, 1000', sizes: '(min-width: 990px) 30vw, 82vw', alt: block.settings.image.alt | default: block.settings.author | escape }}</div>
+  {% endif %}
+  <div class="editorial-testimonial__card-body">
+    {% if block.settings.rating > 0 %}<p class="editorial-testimonial__rating" aria-label="{{ block.settings.rating }} out of 5 stars">{% for star in (1..5) %}<span aria-hidden="true">{% if star <= block.settings.rating %}★{% else %}☆{% endif %}</span>{% endfor %}</p>{% endif %}
+    <blockquote class="editorial-testimonial__quote">{{ block.settings.quote | escape }}</blockquote>
+    <p class="editorial-testimonial__author-line">{{ block.settings.author | escape }}{% if block.settings.verified %} <span class="editorial-testimonial__verified">✓ Verified purchaser</span>{% endif %}</p>
+    {% if block.settings.product != blank %}
+      <a class="editorial-testimonial__product-link" href="{{ block.settings.product.url }}" aria-label="Shop {{ block.settings.product.title | escape }}">
+        {% if block.settings.product.featured_image != blank %}{{ block.settings.product.featured_image | image_url: width: 120 | image_tag: widths: '60, 120', alt: '', class: 'editorial-testimonial__product-image' }}{% endif %}
+        <span><small>Featured product</small>{{ block.settings.product.title | escape }}</span>
+      </a>
+    {% endif %}
+  </div>
+</article>

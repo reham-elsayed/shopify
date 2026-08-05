@@ -3,6 +3,8 @@
 /* Typography tokens moved to token.css */
 
 /* Base typography application */
+
+/* Canela @font-face moved to font-faces.css */
 html {
   -webkit-text-size-adjust: 100%;
 }

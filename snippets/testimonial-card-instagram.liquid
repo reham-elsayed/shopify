@@ -1,0 +1,11 @@
+<article class="editorial-testimonial__card editorial-testimonial__card--instagram" data-testimonial-card data-testimonial-category="{{ block.settings.category | default: 'community' }}">
+  <div class="editorial-testimonial__media editorial-testimonial__media--square">
+    {% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 1000 | image_tag: widths: '320, 480, 640, 800, 1000', sizes: '(min-width: 990px) 30vw, 82vw', alt: block.settings.image.alt | default: block.settings.author | escape }}{% else %}{{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}{% endif %}
+    <span class="editorial-testimonial__social-mark" aria-hidden="true">◎</span>
+  </div>
+  <div class="editorial-testimonial__card-body">
+    <p class="editorial-testimonial__handle">{{ block.settings.handle | default: '@community' | escape }}</p>
+    <p class="editorial-testimonial__caption">{{ block.settings.caption | escape }}</p>
+    {% if block.settings.link != blank %}<a class="editorial-testimonial__text-link" href="{{ block.settings.link }}">View post <span aria-hidden="true">↗</span></a>{% endif %}
+  </div>
+</article>

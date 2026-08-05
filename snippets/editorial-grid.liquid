@@ -1,0 +1,46 @@
+{% comment %}
+  Accepts:
+  - blocks: {Array} section.blocks (Required)
+  - layout_style: {String} 'collage' | 'magazine' | 'vintage' | 'editorial'
+  - desktop_layout: {String} 'left' | 'right'
+  - mobile_layout: {String} 'collage' | 'stacked'
+  - card_styles: {String} section.settings.card_styles
+  - gapless_grid: {Boolean}
+  - section_id: {String}
+{% endcomment %}
+
+{%- liquid
+  assign layout_style = layout_style | default: 'editorial'
+  assign desktop_layout = desktop_layout | default: 'left'
+  assign mobile_layout = mobile_layout | default: 'collage'
+  assign card_styles = card_styles | default: 'standard'
+  assign section_id = section.id
+-%}
+
+{% case layout_style %}
+  {% when 'magazine' %}
+    {% render 'layout-magazine', 
+      blocks: blocks, 
+      card_styles: card_styles, 
+      mobile_layout: mobile_layout, 
+      section_id: section_id,
+      gapless_grid: gapless_grid
+    %}
+  {% when 'vintage' %}
+    {% render 'layout-vintage', 
+      blocks: blocks, 
+      card_styles: card_styles, 
+      mobile_layout: mobile_layout, 
+      section_id: section_id,
+      gapless_grid: gapless_grid
+    %}
+  {% else %}
+    {% render 'layout-editorial', 
+      blocks: blocks, 
+      desktop_layout: desktop_layout, 
+      card_styles: card_styles, 
+      mobile_layout: mobile_layout, 
+      section_id: section_id,
+      gapless_grid: gapless_grid
+    %}
+{% endcase %}
